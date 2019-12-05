@@ -26,4 +26,7 @@
         text-decoration: none;
         color: #8bc540;
     }
+    ul {
+        list-style: none;
+    }
 </style>
