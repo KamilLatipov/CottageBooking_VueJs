@@ -1,18 +1,43 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Login/>
-  </div>
+  <section class="main__list">
+    <div class="main__item">
+      <img/>
+      <p>
+        Блаблабла
+      </p>
+    </div>
+    <div class="main__item">
+      <img/>
+      <p>
+        Блаблабла
+      </p>
+    </div>
+    <div class="main__item">
+      <img/>
+      <p>
+        Блаблабла
+      </p>
+    </div>
+  </section>
 </template>
 
 <script>
-
-import Login from '@/components/Login.vue'
-
 export default {
   name: 'home',
-  components: {
-    Login
-  }
 }
+
 </script>
+<style>
+  .main__list {
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main__item {
+    width: 800px;
+    border: 1px solid black;
+    border-radius: 10px 10px;
+  }
+</style>

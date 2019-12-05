@@ -1,27 +1,13 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <span v-if="isLoggedIn"> | <a @click="logout">Logout</a></span>
-    </div>
-    <router-view/>
-  </div>
+    <Header/>
 </template>
-
 <script>
+    import Header from '@/components/header'
   export default {
-    computed : {
-      isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+    components : {
+       Header,
     },
-    methods: {
-      logout: function () {
-        this.$store.dispatch('logout')
-                .then(() => {
-                  this.$router.push('/login')
-                })
-      }
-    },
+
   }
 </script>
 
@@ -33,17 +19,11 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    body {
+        margin: 0;
     }
-  }
-}
+    a {
+        text-decoration: none;
+        color: #8bc540;
+    }
 </style>
