@@ -8,7 +8,7 @@
              <div class="main-nav__user">
               <span v-if="isLoggedIn"> | <a @click="logout">Logout</a></span>
               <router-link to="/Login" v-if="!isLoggedIn" class="main-nav__link">Войти</router-link>
-                 <router-link to="/Registrationg" v-if="!isLoggedIn" class="main-nav__link">Зарегистрироваться</router-link>
+                 <router-link to="/Registration" v-if="!isLoggedIn" class="main-nav__link">Зарегистрироваться</router-link>
              </div>
            </nav>
         </header>

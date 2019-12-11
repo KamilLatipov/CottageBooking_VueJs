@@ -1,43 +1,42 @@
 <template>
   <section class="main__list">
+    <agile>
     <div class="main__item">
-      <img/>
-      <p>
-        Блаблабла
-      </p>
+      <img src="../assets/cabin.jpg" width="600"/>
+      <div class="main_description">
+        <p>
+          Блаблабла
+        </p>
+      </div>
     </div>
     <div class="main__item">
       <img/>
-      <p>
-        Блаблабла
-      </p>
+      <div class="main_description">
+        <p>
+          Блаблабла
+        </p>
+      </div>
     </div>
     <div class="main__item">
       <img/>
-      <p>
-        Блаблабла
-      </p>
+      <div class="main_description">
+        <p>
+          Блаблабла
+        </p>
+      </div>
     </div>
+    </agile>
   </section>
 </template>
 
 <script>
-export default {
-  name: 'home',
-}
+  import { VueAgile } from 'vue-agile'
 
+  export default {
+    components: {
+      agile: VueAgile
+    }
+  }
 </script>
 <style>
-  .main__list {
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .main__item {
-    width: 800px;
-    border: 1px solid black;
-    border-radius: 10px 10px;
-  }
 </style>
