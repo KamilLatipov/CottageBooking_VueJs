@@ -1,26 +1,27 @@
 <template>
     <div>
-        <h4>Register</h4>
+        <h1>Register</h1>
         <form @submit.prevent="register">
-            <label for="name">Name</label>
-            <div>
-                <input id="name" type="text" v-model="name" required autofocus>
-            </div>
-            <label for="email" >E-Mail Address</label>
-            <div>
-                <input id="email" type="email" v-model="email" required>
-            </div>
-            <label for="password">Password</label>
-            <div>
-                <input id="password" type="password" v-model="password" required>
-            </div>
-            <label for="password-confirm">Confirm Password</label>
-            <div>
-                <input id="password-confirm" type="password" v-model="password_confirmation" required>
-            </div>
-            <div>
-                <button type="submit">Register</button>
-            </div>
+            <ul class="user-form">
+                <li class="user-form__login user-form__item">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" v-model="name" required autofocus>
+                </li>
+                <li class="user-form__password user-form__item">
+                    <label for="email" >E-Mail Address</label>
+                    <input id="email" type="email" v-model="email" required>
+                <li class="user-form__sign-in user-form__item">
+                    <label for="password"></label>
+                    <input id="password" type="password" v-model="password" required>
+                </li>
+                <li class="user-form__sign-in user-form__item">
+                    <label for="password-confirm">Confirm Password</label>
+                    <input id="password-confirm" type="password" v-model="password_confirmation" required>
+                </li>
+                <li class="user-form__sign-in user-form__item">
+                    <button type="submit">Register</button>
+                </li>
+            </ul>
         </form>
     </div>
 </template>
@@ -53,5 +54,28 @@
 </script>
 
 <style scoped>
+    .user-form {
+        display: flex;
+        flex-wrap: wrap;
 
+        width: 400px;
+
+        padding: 0;
+        margin: 0 auto;
+    }
+    .user-form__item {
+        display: flex;
+        flex-wrap: wrap;
+
+        width: 500px;
+
+        padding-bottom: 25px;
+    }
+    input {
+        height: 45px;
+        width: 100%;
+
+        font-size: 20px;
+        line-height: 26px;
+    }
 </style>
