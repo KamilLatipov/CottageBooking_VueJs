@@ -7,6 +7,11 @@
         <p>
           Блаблабла
         </p>
+        <div class="box">
+          <section>
+            <date-picker v-model="value1" type="date" range placeholder="Select date range"></date-picker>
+          </section>
+        </div>
       </div>
     </div>
     <div class="main__item">
@@ -15,6 +20,11 @@
         <p>
           Блаблабла
         </p>
+        <div class="box">
+          <section>
+            <date-picker v-model="value1" type="date" range placeholder="Select date range"></date-picker>
+          </section>
+        </div>
       </div>
     </div>
     <div class="main__item">
@@ -23,6 +33,11 @@
         <p>
           Блаблабла
         </p>
+        <div class="box">
+          <section>
+            <date-picker v-model="value1" type="date" range placeholder="Select date range"></date-picker>
+          </section>
+        </div>
       </div>
     </div>
     </agile>
@@ -31,9 +46,20 @@
 
 <script>
   import { VueAgile } from 'vue-agile'
-
+  import DatePicker from 'vue2-datepicker';
+  import 'vue2-datepicker/index.css';
   export default {
+    name: "header",
+    data() {
+      return {
+        value1: [new Date(2019, 9, 8), new Date(2019, 9, 19)],
+        value2: [],
+        showTimePanel: true,
+        showTimeRangePanel: true,
+      };
+    },
     components: {
+      DatePicker ,
       agile: VueAgile
     }
   }
@@ -44,7 +70,7 @@
     justify-content: space-between;
 
     width: 100px;
-    bottom: -120px;
+    bottom: -90px;
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
@@ -70,7 +96,10 @@
     justify-content: space-around;
 
     margin-top: 60px;
-    height: 100%;
+    height: 450px;
+  }
+  .agile__slides {
+    border-bottom: 1px solid black;
   }
   .agile__nav-button {
      background: transparent;

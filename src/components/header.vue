@@ -18,7 +18,6 @@
 
 <script>
     export default {
-        name: "header",
         computed : {
             isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
         },

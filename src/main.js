@@ -6,6 +6,7 @@ import store from './store'
 import Axios from 'axios'
 import VueAgile from 'vue-agile'
 
+
 Vue.use(VueAgile)
 Vue.config.productionTip = false
 

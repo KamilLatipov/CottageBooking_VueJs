@@ -69,4 +69,17 @@
       font-size: 20px;
       line-height: 26px;
   }
+  .login-window {
+      width: 600px;
+      height: 470px;
+
+      margin: 70px auto 0 auto;
+
+      border: 1px solid rgba(0,0,0 , 0.2);
+      border-radius: 10px 10px;
+  }
+    .login-window__headline {
+        padding-top: 45px;
+        padding-bottom: 25px;
+    }
 </style>
