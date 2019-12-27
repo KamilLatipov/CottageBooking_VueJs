@@ -12,6 +12,7 @@
 </script>
 
 <style lang="scss">
+@import 'assets/main.scss';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,9 +20,9 @@
   text-align: center;
   color: #2c3e50;
 }
-    body {
-        margin: 0;
-    }
+body {
+    margin: 0;
+}
     a {
         text-decoration: none;
         color: #8bc540;

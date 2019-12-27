@@ -1,0 +1,20 @@
+.wo {
+    color: red;
+}
+body {
+    @media (max-width: 320px) {
+      width: 320px;
+    }
+}
+
+.main-nav {
+    @media (max-width: 320px) {
+        width: 320px;
+    }
+}
+
+.agile__slides {
+    @media (max-width: 320px) {
+        width: 320px;
+    }
+}

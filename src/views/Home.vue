@@ -4,7 +4,7 @@
     <div class="main__item">
       <img src="../assets/cabin.jpg" width="600"/>
       <div class="main_description">
-        <p>
+        <p class="wo">
           Блаблабла
         </p>
         <div class="box">
