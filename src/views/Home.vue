@@ -63,13 +63,15 @@
       DatePicker ,
     }
   }
-  axios({
-    method:'get',
-    url:'https://abrom-booking.herokuapp.com/users',
-  })
-          .then(function(response) {
-            alert(response.data);
-          });
+  function heck() {
+    axios({
+      method: 'get',
+      url: 'https://abrom-booking.herokuapp.com/users',
+    })
+            .then(function (response) {
+              alert(response.data);
+            });
+  };
 </script>
 <style>
   .main__list {
