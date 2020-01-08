@@ -4,7 +4,7 @@
         Вход в личный кабинет
     </h1>
     <div class="login-form">
-        <form class="login-form__field" @submit.prevent="login">
+        <form class="login-form__field" @submit.prevent="authorization">
             <ul class="user-form">
                 <li class="user-form__login user-form__item">
                         <label>Ваша почта</label>
@@ -14,7 +14,7 @@
                         <label>Пароль</label>
                         <input required v-model="password" type="password"/>
                 <li class="user-form__sign-in user-form__item">
-                    <button type="submit">Login</button>
+                    <button type="submit">authorization</button>
                 </li>
             </ul>
         </form>
