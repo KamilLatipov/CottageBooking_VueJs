@@ -9,10 +9,10 @@
                 </li>
                 <li class="user-form__password user-form__item">
                     <label for="email" >Ваша почта</label>
-                    <input id="email" type="email" v-model="lastName" required>
+                    <input id="email" type="text" v-model="lastName" required>
                 <li class="user-form__sign-in user-form__item">
                     <label for="password">Пароль</label>
-                    <input id="password" type="password" v-model="login" required>
+                    <input id="password" type="text" v-model="login" required>
                 </li>
                 <li class="user-form__sign-in user-form__item">
                     <label for="password-confirm">Подвердите пароль</label>
