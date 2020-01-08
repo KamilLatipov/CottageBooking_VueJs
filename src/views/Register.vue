@@ -5,18 +5,18 @@
             <ul class="user-form">
                 <li class="user-form__login user-form__item">
                     <label for="name">Ваше имя</label>
-                    <input id="name" type="text" v-model="name" required autofocus>
+                    <input id="name" type="text" v-model="firstName" required autofocus>
                 </li>
                 <li class="user-form__password user-form__item">
                     <label for="email" >Ваша почта</label>
-                    <input id="email" type="email" v-model="email" required>
+                    <input id="email" type="email" v-model="lastName" required>
                 <li class="user-form__sign-in user-form__item">
                     <label for="password">Пароль</label>
-                    <input id="password" type="password" v-model="password" required>
+                    <input id="password" type="password" v-model="login" required>
                 </li>
                 <li class="user-form__sign-in user-form__item">
                     <label for="password-confirm">Подвердите пароль</label>
-                    <input id="password-confirm" type="password" v-model="password_confirmation" required>
+                    <input id="password-confirm" type="password" v-model="password" required>
                 </li>
                 <li class="user-form__sign-in user-form__item">
                     <button type="submit">Register</button>
@@ -30,20 +30,19 @@
     export default {
         data(){
             return {
-                name : "",
-                email : "",
+                firstName : "",
+                lastName : "",
+                login : "",
                 password : "",
-                password_confirmation : "",
-                is_admin : null
             }
         },
         methods: {
             register: function () {
                 let data = {
-                    name: this.name,
-                    email: this.email,
+                    firstName: this.firstName,
+                    lastName: this.lastName,
+                    login: this.login,
                     password: this.password,
-                    is_admin: this.is_admin
                 }
                 this.$store.dispatch('register', data)
                     .then(() => this.$router.push('/'))
