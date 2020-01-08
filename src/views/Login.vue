@@ -8,7 +8,7 @@
             <ul class="user-form">
                 <li class="user-form__login user-form__item">
                         <label>Ваша почта</label>
-                        <input required v-model="email" type="email"/>
+                        <input required v-model="text" type="email"/>
                 </li>
                 <li class="user-form__password user-form__item">
                         <label>Пароль</label>
@@ -26,15 +26,15 @@
     export default {
         data(){
             return {
-                email : "",
+                text : "",
                 password : ""
             }
         },
         methods: {
             login: function () {
-                let email = this.email
+                let text = this.text
                 let password = this.password
-                this.$store.dispatch('login', { email, password })
+                this.$store.dispatch('login', { text, password })
                     .then(() => this.$router.push('/'))
                     .catch(err => alert(err))
             }
