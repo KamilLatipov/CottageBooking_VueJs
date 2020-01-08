@@ -62,16 +62,20 @@
 
       padding-bottom: 25px;
   }
+  label {
+      margin-bottom: 10px;
+  }
   input {
       height: 45px;
       width: 100%;
+      padding: 0 10px;
 
       font-size: 20px;
       line-height: 26px;
   }
   .login-window {
       width: 600px;
-      height: 470px;
+      height: 440px;
 
       margin: 70px auto 0 auto;
 

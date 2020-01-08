@@ -1,6 +1,5 @@
 <template>
   <section class="main__list">
-    <agile>
     <div class="main__item">
       <img src="../assets/cabin.jpg" width="600"/>
       <div class="main_description">
@@ -15,7 +14,7 @@
       </div>
     </div>
     <div class="main__item">
-      <img/>
+      <img src="../assets/cabin.jpg" width="600"/>
       <div class="main_description">
         <p>
           Блаблабла
@@ -28,7 +27,7 @@
       </div>
     </div>
     <div class="main__item">
-      <img/>
+      <img src="../assets/cabin.jpg" width="600"/>
       <div class="main_description">
         <p>
           Блаблабла
@@ -40,12 +39,10 @@
         </div>
       </div>
     </div>
-    </agile>
   </section>
 </template>
 
 <script>
-  import { VueAgile } from 'vue-agile'
   import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
   export default {
@@ -60,68 +57,28 @@
     },
     components: {
       DatePicker ,
-      agile: VueAgile
     }
   }
 </script>
 <style>
-  .agile__dots {
+  .main__list {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 
-    width: 100px;
-    bottom: -90px;
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
-  }
-  .agile__dot button {
-    background-color: white;
-
-    height: 20px;
-    width: 20px;
-
-    border: 1.5px solid black;
-    border-radius: 50% 50%;
-  }
-  .agile__dot--current button{
-    background-color: rgba(139,197,64, 0.4);
-  }
-  .agile__dot:hover button{
-    opacity: 0.8;
-    background-color: #8bc540;
+    width: 1100px;
+    margin: 0 auto 80px auto;
   }
   .main__item  {
     display: flex;
     justify-content: space-around;
 
+    width: 100%;
+
     margin-top: 60px;
+    margin-bottom: 40px;
     height: 450px;
-  }
-  .agile__slides {
-    border-bottom: 1px solid black;
-  }
-  .agile__nav-button {
-     background: transparent;
-     border: none;
-     color: black;
-     cursor: pointer;
-     font-size: 37px;
-     height: 100%;
-     position: absolute;
-     top: 0;
-     transition-duration: .3s;
-     width: 90px;
-    opacity: 0.6;
-   }
-  .agile__nav-button:hover {
-    background-color: rgba(139,197,64, 0.14);
-    opacity: 1;
-  }
-  .agile__nav-button--next {
-    right: 0;
-  }
-  .agile__nav-button--prev {
-    left: 0;
+
+    border: 1px solid rgba(0,0,0, 0.2);
+    border-radius: 20px;
   }
 </style>
