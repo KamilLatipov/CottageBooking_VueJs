@@ -1,5 +1,8 @@
 <template>
   <section class="main__list">
+    <form  @submit="heck">
+      <button type="submit">Register</button>
+    </form>
     <div class="main__item">
       <img src="../assets/cabin.jpg" width="600"/>
       <div class="main_description">
@@ -43,6 +46,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
   export default {
@@ -59,6 +63,13 @@
       DatePicker ,
     }
   }
+  axios({
+    method:'get',
+    url:'https://abrom-booking.herokuapp.com/users',
+  })
+          .then(function(response) {
+            alert(response.data);
+          });
 </script>
 <style>
   .main__list {
