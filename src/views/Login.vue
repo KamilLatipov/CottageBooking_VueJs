@@ -8,7 +8,7 @@
             <ul class="user-form">
                 <li class="user-form__login user-form__item">
                         <label>Ваша почта</label>
-                        <input required v-model="text" type="text"/>
+                        <input required v-model="login" type="text"/>
                 </li>
                 <li class="user-form__password user-form__item">
                         <label>Пароль</label>
@@ -26,15 +26,15 @@
     export default {
         data(){
             return {
-                text : "",
+                login : "",
                 password : ""
             }
         },
         methods: {
-            login: function () {
-                let text = this.text
+            authorization: function () {
+                let login = this.login
                 let password = this.password
-                this.$store.dispatch('login', { text, password })
+                this.$store.dispatch('authorization', { login, password })
                     .then(() => this.$router.push('/'))
                     .catch(err => alert(err))
             }
