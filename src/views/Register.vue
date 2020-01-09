@@ -8,18 +8,18 @@
                     <input id="name" type="text" v-model="firstName" required autofocus>
                 </li>
                 <li class="user-form__password user-form__item">
-                    <label for="email" >Ваша почта</label>
+                    <label for="email" >Ваша фамилия</label>
                     <input id="email" type="text" v-model="lastName" required>
                 <li class="user-form__sign-in user-form__item">
-                    <label for="password">Пароль</label>
+                    <label for="password">Логин</label>
                     <input id="password" type="text" v-model="login" required>
                 </li>
                 <li class="user-form__sign-in user-form__item">
-                    <label for="password-confirm">Подвердите пароль</label>
+                    <label for="password-confirm">Пароль</label>
                     <input id="password-confirm" type="password" v-model="password" required>
                 </li>
                 <li class="user-form__sign-in user-form__item">
-                    <button type="submit">Register</button>
+                    <button type="submit">Зарегистрироваться</button>
                 </li>
             </ul>
         </form>
@@ -45,9 +45,9 @@
                     password: this.password,
                 }
                 this.$store.dispatch('register', data)
-                    .then(() => this.$router.push('/'))
+                    .then(() => this.$router.push("/login"))
                     .catch(err => alert(err))
-            }
+            },
         }
     }
 </script>

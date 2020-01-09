@@ -35,8 +35,8 @@
                 let login = this.login
                 let password = this.password
                 this.$store.dispatch('authorization', { login, password })
-                    .then(() => this.$router.push('/'))
-                    .catch(err => alert(err))
+                    .then(() => this.$router.push("/"))
+                    .catch(err => alert(err));
             }
         }
 

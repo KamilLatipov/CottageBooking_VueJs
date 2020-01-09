@@ -1,18 +1,19 @@
 <template>
     <div id="app">
         <header class="main-header">
-           <nav class="main-nav" >
+           <nav class="main-nav">
             <router-link to="/" class="main-nav__link main-nav__image">
                 <img width="67" height="67" src="../assets/house.png"/>
             </router-link>
              <div class="main-nav__user">
-              <span v-if="isLoggedIn"> | <a @click="logout">Logout</a></span>
-              <router-link to="/Login" v-if="!isLoggedIn" class="main-nav__link">Войти</router-link>
-                 <router-link to="/Registration" v-if="!isLoggedIn" class="main-nav__link">Зарегистрироваться</router-link>
+              <div v-if="isLoggedIn"><a @click="logout">Выйти</a></div>
+                 <div v-else>
+                     <router-link to="/Login" class="main-nav__link">Войти</router-link>
+                     <router-link to="/Registration"  class="main-nav__link">Зарегистрироваться</router-link>
+                 </div>
              </div>
            </nav>
         </header>
-        <router-view/>
     </div>
 </template>
 
