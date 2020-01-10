@@ -16,6 +16,9 @@
                 <li class="user-form__sign-in user-form__item">
                     <button type="submit">authorization</button>
                 </li>
+                <li>
+                    <router-link to="/Registration">Some</router-link>
+                </li>
             </ul>
         </form>
     </div>
@@ -35,7 +38,7 @@
                 let login = this.login
                 let password = this.password
                 this.$store.dispatch('authorization', { login, password })
-                    .then(() => this.$router.push("/"))
+                    .then(() => this.$router.push("/home"))
                     .catch(err => alert(err));
             }
         }

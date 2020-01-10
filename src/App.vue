@@ -29,6 +29,7 @@ body {
     a {
         text-decoration: none;
         color: #8bc540;
+        font-size: 25px;
     }
     ul {
         list-style: none;
