@@ -82,7 +82,7 @@ export default new Vuex.Store({
   modules: {
   },
   getters : {
-    isLoggedIn: state => state.accessToken,
+    isLoggedIn: state => state.token,
     authStatus: state => state.status,
   }
 })

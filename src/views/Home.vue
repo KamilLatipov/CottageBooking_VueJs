@@ -6,6 +6,7 @@
         <p class="wo">
           Блаблабла
         </p>
+        <a v-on:click="test">test</a>
         <div class="box">
           <section>
             <date-picker v-model="value1" type="date" range placeholder="Select date range"></date-picker>
@@ -45,6 +46,8 @@
 <script>
   import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
+  import axios from 'axios'
+
   export default {
     name: "header",
     data() {
@@ -54,6 +57,14 @@
         showTimePanel: true,
         showTimeRangePanel: true,
       };
+    },
+    methods:  {
+      test: function () {
+      axios({url: 'https://abrom-booking.herokuapp.com/users?token=u1TgIsKIv8', method: 'GET'})
+            .then(function(response){
+              alert(response)
+            })
+  }
     },
     components: {
       DatePicker ,
