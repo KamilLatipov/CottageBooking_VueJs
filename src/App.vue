@@ -10,7 +10,6 @@
     components : {
        Header,
     },
-
   }
 </script>
 

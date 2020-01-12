@@ -61,4 +61,7 @@
       width: 250px;
   }
 
+  .main-nav__user a {
+      color: black;
+  }
 </style>

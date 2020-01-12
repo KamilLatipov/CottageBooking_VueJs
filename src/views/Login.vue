@@ -28,6 +28,7 @@
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
     export default {
         data(){
             return {
@@ -43,10 +44,13 @@
                     .then(() => this.$router.push("/home"))
                     .catch(err => alert(err));
             }
-        }
-
+        },
+        computed: {
+            ...mapGetters({
+                isLoggedIn: "isLoggedIn"
+            })
+        },
     }
-
 </script>
 
 <style scoped>

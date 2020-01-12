@@ -9,7 +9,7 @@
         <a v-on:click="test">test</a>
         <div class="box">
           <section>
-            <date-picker v-model="value1" type="date" range placeholder="Select date range"></date-picker>
+            <date-picker v-model="value1" type="date" range placeholder="Выберите даты"></date-picker>
           </section>
         </div>
       </div>
@@ -22,7 +22,7 @@
         </p>
         <div class="box">
           <section>
-            <date-picker v-model="value1" type="date" range placeholder="Select date range"></date-picker>
+            <date-picker v-model="value2" type="date" range placeholder="Select date range"></date-picker>
           </section>
         </div>
       </div>
@@ -35,7 +35,7 @@
         </p>
         <div class="box">
           <section>
-            <date-picker v-model="value1" type="date" range placeholder="Select date range"></date-picker>
+            <date-picker v-model="value3" type="date" range placeholder="Select date range"></date-picker>
           </section>
         </div>
       </div>
@@ -52,8 +52,9 @@
     name: "header",
     data() {
       return {
-        value1: [new Date(2019, 9, 8), new Date(2019, 9, 19)],
-        value2: [],
+        value1: [],
+        value2: [new Date(2019, 9, 8), new Date(2019, 9, 19)],
+        value3: [new Date(2019, 9, 8), new Date(2019, 9, 19)],
         showTimePanel: true,
         showTimeRangePanel: true,
       };
