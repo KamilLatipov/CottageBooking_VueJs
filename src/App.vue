@@ -14,21 +14,23 @@
 </script>
 
 <style lang="scss">
-@import 'assets/main.scss';
+@import 'assets/global';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
 body {
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
 }
     a {
         text-decoration: none;
         color: #8bc540;
         font-size: 25px;
+        outline : none;
+        cursor: pointer;
     }
     ul {
         list-style: none;

@@ -1,0 +1,25 @@
+.main-header {
+  width: 100%;
+
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.09);
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 150px;
+  padding: 5px 0;
+
+  &__logout {
+    color: black;
+  }
+}
+
+@media (max-width: 330px) {
+  .main-nav {
+    justify-content: space-around;
+
+    margin: 0 auto;
+  }
+}

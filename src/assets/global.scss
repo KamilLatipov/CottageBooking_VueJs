@@ -1,0 +1,11 @@
+@import "style/home/main";
+@import "style/main-header/main-header";
+
+.wo {
+    color: red;
+}
+body {
+    @media (max-width: 330px) {
+      width: 330px;
+    }
+}

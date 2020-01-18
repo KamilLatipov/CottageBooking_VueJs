@@ -18,7 +18,7 @@
                 <li class="user-form__sign-in user-form__item">
                     <button type="submit">Войти</button>
                     <div class="user-form__item--register">
-                        <router-link to="/Registration" style="font-size: 18px">Зарегистрироваться</router-link>
+                        <router-link to="/Registration" style="font-size: 18.5px">Зарегистрироваться</router-link>
                     </div>
                 </li>
             </ul>
@@ -91,6 +91,8 @@
 
       font-size: 20px;
       line-height: 26px;
+
+      outline : none;
   }
   button {
       padding: 15px 36px 15px 36px;
@@ -101,7 +103,10 @@
       border-radius: 10px;
       color: white;
 
-      font-size: 15px;
+      font-size: 16px;
+
+      outline : none;
+      cursor: pointer;
   }
   .login-window {
       width: 600px;

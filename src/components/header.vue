@@ -7,7 +7,7 @@
             </router-link>
              <div class="main-nav__user">
               <div v-if="isLoggedIn">
-                  <a @click="logout">Выйти</a>
+                  <a class="main-nav__logout" @click="logout">Выйти</a>
               </div>
              </div>
            </nav>
@@ -41,27 +41,4 @@
 </script>
 
 <style scoped>
-  .main-header {
-      width: 100%;
-
-      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.09);
-  }
-  .main-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      margin: 0 200px;
-      padding: 5px 0;
-  }
-  .main-nav__user  {
-      display: flex;
-      justify-content: space-around;
-
-      width: 250px;
-  }
-
-  .main-nav__user a {
-      color: black;
-  }
 </style>
