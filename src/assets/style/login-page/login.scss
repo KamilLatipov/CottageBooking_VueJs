@@ -1,0 +1,13 @@
+.login-window {
+  width: 600px;
+
+  margin: 60px auto 0 auto;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px;
+
+  &__headline {
+    padding-top: 30px;
+    padding-bottom: 25px;
+  }
+}

@@ -1,24 +1,30 @@
 <template>
   <section class="main__list">
     <div class="main__item">
-      <img class="main__image" src="../assets/cabin.jpg"/>
+      <div class="main__images">
+        <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+      </div>
       <div class="main_description">
         <p class="wo">
           Блаблабла
         </p>
-        <a v-on:click="test">test</a>
         <div class="box">
           <section>
             <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты" :disabled-date="notBeforeToday"></date-picker>
-            <form @submit="getDate">
-              <button type="submit">Click</button>
-            </form>
           </section>
         </div>
       </div>
     </div>
     <div class="main__item">
-      <img src="../assets/cabin.jpg" class="main__image"/>
+      <div class="main__images">
+        <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+      </div>
       <div class="main_description">
         <p>
           Блаблабла
@@ -31,7 +37,12 @@
       </div>
     </div>
     <div class="main__item">
-      <img src="../assets/cabin.jpg" class="main__image"/>
+      <div class="main__images">
+        <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+        <img class="main__image" src="../assets/cabin.jpg"/>
+      </div>
       <div class="main_description">
         <p>
           Блаблабла
@@ -72,7 +83,7 @@
             })
       },
       notBeforeToday() {
-        return  new Date(2019, 9, 8), today;
+       
       },
       getDate: function() {
         alert(this.value1);

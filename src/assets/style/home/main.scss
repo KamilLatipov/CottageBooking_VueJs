@@ -20,9 +20,21 @@
   border-radius: 20px;
 }
 
-.main__image {
+.main__images {
+  display: flex;
+  flex-wrap: wrap;
+
   width: 600px;
 }
+
+.main__image {
+  width: 200px;
+
+  &--1 {
+    width: 600px;
+  }
+}
+
 
 @media (max-width: 400px) {
   .main__list {
@@ -33,6 +45,10 @@
   }
 
   .main__image {
-    width: 290px;
+    width: 126.66px;
+
+    &--1 {
+      width: 380px;
+    }
   }
 }

@@ -2,7 +2,7 @@
     <div class="register-window">
         <form @submit.prevent="register">
             <ul class="user-form">
-                <li class="login-window__headline">
+                <li class="register-window__headline">
                     <h1>Регистрация</h1>
                 </li>
                 <li class="user-form__login user-form__item">
@@ -66,7 +66,7 @@
         border: 1px solid rgba(0,0,0 , 0.2);
         border-radius: 10px 10px;
     }
-    .login-window__headline {
+    .register-window__headline {
         display: flex;
         margin: 0 auto;
 
