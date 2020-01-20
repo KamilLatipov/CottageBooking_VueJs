@@ -1,7 +1,7 @@
 <template>
     <div class="register-window">
         <form @submit.prevent="register">
-            <ul class="user-form">
+            <ul class="r-form">
                 <li class="register-window__headline">
                     <h1>Регистрация</h1>
                 </li>

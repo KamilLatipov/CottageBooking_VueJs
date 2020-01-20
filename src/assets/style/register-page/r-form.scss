@@ -34,7 +34,7 @@
     width: 100%;
     padding: 3px 10px;
 
-    border-radius: 7px;
+    border-radius: 3px;
 
     font-size: 20px;
     line-height: 26px;
@@ -56,16 +56,27 @@
     outline : none;
     cursor: pointer;
   }
+
+  &__link {
+    padding-top: 13px;
+  }
 }
 
 @media (max-width: 400px) {
   .r-form {
-    width: 300px;
+    width: 400px;
 
     &__item {
-      width: 320px;
+      width: 340px;
+
+      margin: 0 auto;
+      padding-bottom: 13px;
 
       font-size: 14px;
+
+      &--last {
+        margin-top: 15px;
+      }
     }
 
     &__link {
@@ -83,7 +94,11 @@
     }
 
     &__input {
-      padding: 3px 7px;
+      padding: 0 7px;
+
+      height: 25px;
+
+      font-size: 15px;
 
       border: 1px solid rgba(191, 191, 191, 1);
     }

@@ -37,10 +37,12 @@
     cursor: pointer;
   }
 
-  &__link--register {
+  &__link {
     padding-top: 13px;
 
-    font-size: 18.5px;
+    &--register {
+      font-size: 18.5px;
+    }
   }
 
   &__label {
@@ -66,13 +68,13 @@
     width: 300px;
 
     &__item {
-      width: 320px;
+      width: 290px;
 
       font-size: 14px;
     }
 
     &__link {
-      padding-top: 5px;
+      padding-top: 10px;
 
       &--register {
         font-size: 14px;
