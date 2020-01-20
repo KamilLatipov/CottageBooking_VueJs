@@ -17,8 +17,8 @@
                         <input class="user-form__input" required v-model="password" type="password"/>
                 <li class="user-form__sign-in user-form__item">
                     <button class="user-form__button" type="submit">Войти</button>
-                    <div class="user-form__item--register">
-                        <router-link to="/Registration" style="font-size: 18.5px">Зарегистрироваться</router-link>
+                    <div class="user-form__link">
+                        <router-link to="/Registration" class="user-form__link--register">Зарегистрироваться</router-link>
                     </div>
                 </li>
             </ul>

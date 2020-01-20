@@ -1,19 +1,22 @@
-.login-window {
+.register-window {
   width: 600px;
 
-  margin: 60px auto 0 auto;
+  margin: 22px auto 0 auto;
 
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0,0,0 , 0.2);
   border-radius: 10px 10px;
 
   &__headline {
+    display: flex;
+    margin: 0 auto;
+
     padding-top: 30px;
     padding-bottom: 25px;
   }
 }
 
 @media (max-width: 400px) {
-  .login-window {
+  .register-window {
     width: 390px;
 
     border: none;
@@ -22,7 +25,7 @@
 
     &__headline {
       text-align: center;
-      font-size: 25px;
+      font-size: 12px;
     }
   }
 }
