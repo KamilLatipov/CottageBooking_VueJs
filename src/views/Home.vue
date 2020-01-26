@@ -95,4 +95,7 @@
   }
 </script>
 <style>
+  .mx-datepicker-popup {
+    display: block;
+  }
 </style>
