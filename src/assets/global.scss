@@ -8,8 +8,15 @@
 .wo {
     color: red;
 }
+
 body {
   @media (max-width: 400px) {
     width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mx-datepicker-inline {
+    width: 100px;
   }
 }

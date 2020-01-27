@@ -12,8 +12,8 @@
           Блаблабла
         </p>
         <div class="box">
-          <section>
-            <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты" :disabled-date="notBeforeToday"></date-picker>
+          <section class="box-width">
+            <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты" popup-style="display: block" :disabled-date="notBeforeToday" inline></date-picker>
           </section>
         </div>
       </div>
@@ -31,7 +31,7 @@
         </p>
         <div class="box">
           <section>
-            <date-picker v-model="value2" type="date" value-type="format" range placeholder="Select date range" :disabled-date="notBeforeToday"></date-picker>
+            <date-picker v-model="value2" type="date" value-type="format" range placeholder="Select date range" :disabled-date="notBeforeToday" inline></date-picker>
           </section>
         </div>
       </div>
@@ -49,7 +49,7 @@
         </p>
         <div class="box">
           <section>
-            <date-picker v-model="value3" type="date" value-type="format" range placeholder="Select date range" :disabled-date="notBeforeToday"></date-picker>
+            <date-picker v-model="value3" type="date" value-type="format" range placeholder="Select date range" :disabled-date="notBeforeToday" inline></date-picker>
           </section>
         </div>
       </div>
@@ -95,7 +95,4 @@
   }
 </script>
 <style>
-  .mx-datepicker-popup {
-    display: block;
-  }
 </style>
