@@ -1,8 +1,8 @@
 <template>
-    <div>
+<div>
     <Header/>
     <router-view></router-view>
-    </div>
+</div>
 </template>
 <script>
     import Header from '@/components/header'

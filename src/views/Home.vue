@@ -2,7 +2,10 @@
   <section class="main__list">
     <div class="main__item">
       <div class="main__images">
-        <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+        <img class="main__image main__image--1" :src="lol" :id="myImg" v-on:click="zoom"/>
+        <div :id="myModal" class="modal" :style="{display: gone}">
+          <img class="modal-content" :id="img01" :src="lol">
+        </div>
         <img class="main__image" src="../assets/cabin.jpg"/>
         <img class="main__image" src="../assets/cabin.jpg"/>
         <img class="main__image" src="../assets/cabin.jpg"/>
@@ -73,6 +76,11 @@
         value3: new Date(),
         showTimePanel: true,
         showTimeRangePanel: true,
+        lol: "/img/cabin.05fc830a.jpg",
+        myModal: "dude",
+        img01: "1",
+        myImg: "myImg",
+        gone: "none",
       };
     },
     methods:  {
@@ -87,6 +95,9 @@
       },
       getDate: function() {
         alert(this.value1);
+      },
+      zoom: function() {
+        this.gone = "block";
       }
     },
     components: {
