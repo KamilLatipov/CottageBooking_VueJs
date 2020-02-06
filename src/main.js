@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import Axios from 'axios'
+//import './assets/modal-img'
 
 Vue.prototype.$http = Axios;
 const token = localStorage.getItem('token')

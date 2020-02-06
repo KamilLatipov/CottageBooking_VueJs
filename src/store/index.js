@@ -76,7 +76,14 @@ export default new Vuex.Store({
         delete axios.defaults.headers.common['Authorization']
         resolve()
       })
-
+    },
+    sendDates(dates) {
+        return new Promise((resolve) => {
+            axios({url: 'https://abrom-booking.herokuapp.com/dates?token=u1TgIsKIv8',data: dates, method: 'POST'})
+                .then(response => {
+                    resolve(response)
+                });
+        })
     }
   },
   modules: {
