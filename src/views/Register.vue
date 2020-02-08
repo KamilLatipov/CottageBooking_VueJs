@@ -10,11 +10,15 @@
                     <input class="r-form__input" id="name" type="text" v-model="firstName" required autofocus>
                 </li>
                 <li class="r-form__password r-form__item">
-                    <label class="r-form__label" for="email" >Ваша фамилия</label>
-                    <input class="r-form__input" id="email" type="text" v-model="lastName" required>
+                    <label class="r-form__label" for="last-name" >Ваша фамилия</label>
+                    <input class="r-form__input" id="last-name" type="text" v-model="lastName" required>
                 <li class="r-form__sign-up r-form__item">
                     <label class="r-form__label" for="password">Логин</label>
                     <input class="r-form__input" id="password" type="text" v-model="login" required>
+                </li>
+                <li class="r-form__sign-up r-form__item">
+                    <label class="r-form__label" for="email">Почта</label>
+                    <input class="r-form__input" id="email" type="email" v-model="email" required>
                 </li>
                 <li class="r-form__sign-up r-form__item">
                     <label class="r-form__label" for="password-confirm">Пароль</label>
@@ -39,6 +43,7 @@
                 lastName : "",
                 login : "",
                 password : "",
+                email: "",
             }
         },
         methods: {
@@ -48,6 +53,7 @@
                     lastName: this.lastName,
                     login: this.login,
                     password: this.password,
+                    email: this.email,
                 }
                 this.$store.dispatch('register', data)
                     .then(() => this.$router.push("/"))

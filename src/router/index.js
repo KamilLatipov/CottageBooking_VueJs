@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from "../views/Login.vue"
 import Home from "../views/Home.vue"
+import Admin from "../views/Admin.vue"
 import Register from "../views/Register.vue"
 import store from "../store/index"
 
@@ -26,6 +27,11 @@ const routes = [
     path:'/Registration',
     name:'register',
     component: Register
+  },
+  {
+    path:'/Admin',
+    name:'admin',
+    component: Admin
   },
   {
     path:'/home',

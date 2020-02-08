@@ -34,7 +34,7 @@ export default new Vuex.Store({
       authorization({commit}, user){
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios({url: 'https://abrom-booking.herokuapp.com/login', data: user, method: 'POST' })
+        axios({url: 'https://abrom-booking.herokuapp.com/api/v1/login', data: user, method: 'POST' })
             .then(resp => {
               const token = resp.data.token
               const user = resp.data.user
@@ -53,7 +53,7 @@ export default new Vuex.Store({
     register({commit}, user){
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios({url: 'https://abrom-booking.herokuapp.com/user/add', data: user, method: 'POST' })
+        axios({url: 'https://abrom-booking.herokuapp.com/api/v1/users/add', data: user, method: 'POST' })
             .then(resp => {
               //const token = resp.data.token
               //const user = resp.data.user
@@ -77,12 +77,16 @@ export default new Vuex.Store({
         resolve()
       })
     },
-    sendDates(dates) {
-        return new Promise((resolve) => {
-            axios({url: 'https://abrom-booking.herokuapp.com/dates?token=u1TgIsKIv8',data: dates, method: 'POST'})
+    sendDates({commit} , dates) {
+        return new Promise((resolve, reject) => {
+            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/add?token=GE3ehWoRCS', data: dates, method: 'PUT'})
                 .then(response => {
-                    resolve(response)
-                });
+                    resolve(alert(response))
+                })
+                .catch(err => {
+                    reject(err)
+                })
+
         })
     }
   },
