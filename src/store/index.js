@@ -69,20 +69,19 @@ export default new Vuex.Store({
             })
       })
     },
-    logout({commit}){
-      return new Promise((resolve) => {
-        commit('logout')
-        localStorage.removeItem('token')
-        delete axios.defaults.headers.common['Authorization']
-        resolve()
-      })
+    logout({commit}) {
+       return new Promise((resolve) => {
+           commit('logout')
+           axios({url: 'https://abrom-booking.herokuapp.com/api/v1/logout', method: 'POST'})
+           localStorage.removeItem('token')
+           delete axios.defaults.headers.common['Authorization']
+           resolve()
+       })
     },
     sendDates({commit} , dates) {
         return new Promise((resolve, reject) => {
-            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/add?token=GE3ehWoRCS', data: dates, method: 'PUT'})
-                .then(response => {
-                    resolve(alert(response))
-                })
+                //?token=XlZGRSAkIF
+            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/add', data: dates, method: 'POST'})
                 .catch(err => {
                     reject(err)
                 })

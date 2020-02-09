@@ -32,6 +32,7 @@ const routes = [
     path:'/Admin',
     name:'admin',
     component: Admin
+    //beforeEnter: store.getters.isAdmin,
   },
   {
     path:'/home',

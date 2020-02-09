@@ -49,8 +49,8 @@
         methods: {
             register: function () {
                 let data = {
-                    firstName: this.firstName,
-                    lastName: this.lastName,
+                    firstname: this.firstName,
+                    lastname: this.lastName,
                     login: this.login,
                     password: this.password,
                     email: this.email,
