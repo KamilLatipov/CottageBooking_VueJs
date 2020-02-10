@@ -132,7 +132,7 @@
         this.$store.dispatch('sendDates', dates)
                 .then(() => alert(dates.startOfInterval))
                .catch(err => alert(err))
-      }
+      },
     },
     components: {
       DatePicker ,

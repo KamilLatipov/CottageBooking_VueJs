@@ -31,8 +31,10 @@ const routes = [
   {
     path:'/Admin',
     name:'admin',
-    component: Admin
-    //beforeEnter: store.getters.isAdmin,
+    component: Admin,
+    beforeEnter: ((to, from, next) => {
+      if (localStorage.getItem('admin')) next()
+    })
   },
   {
     path:'/home',

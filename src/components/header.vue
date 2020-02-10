@@ -25,7 +25,8 @@
         computed: {
             //isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
             ...mapGetters({
-                isLoggedIn: "isLoggedIn"
+                isLoggedIn: "isLoggedIn",
+                isAdmin: "isAdmin"
             })
         },
         methods: {
