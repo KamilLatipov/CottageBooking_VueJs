@@ -25,7 +25,7 @@
             <li class="main__user--item" v-for="item in userList" v-bind:key="item">
               <p class="a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
               <span class="border"></span>
-              <p class="b">Статус</p>
+              <p class="b">{{ item.intervalStatus }}</p>
             </li>
           </ul>
         </div>
@@ -109,7 +109,7 @@
       disabledDate(date) {
         let count = date < today;
         for (let i = 0; i < this.list.length; i++) {
-         if (this.list[i].cottageID != 1 || (this.list[i].intervalStatus != "PENDING" && this.list[i].intervalStatus != "BOOKED")) {continue}
+         if (this.list[i].cottageID != 1) {continue}
            let string = this.list[i].startOfInterval;
            let string2 = this.list[i].endOfInterval;
            let splited = string.split("-");

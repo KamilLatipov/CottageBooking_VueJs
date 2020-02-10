@@ -9,7 +9,7 @@ export default new Vuex.Store({
     status: '',
     token: localStorage.getItem('token') || '',
     user : {},
-    role: ''
+    role: localStorage.getItem('admin') || ''
   },
   mutations: {
     auth_request(state){
@@ -27,6 +27,7 @@ export default new Vuex.Store({
     logout(state){
       state.status = ''
       state.token = ''
+      state.role = ''
     },
   },
   actions: {
@@ -38,6 +39,7 @@ export default new Vuex.Store({
               const token = resp.data.token
               const user = resp.data.user
               const role = resp.data.role
+              localStorage.setItem('admin', role)
               localStorage.setItem('token', token)
               axios.defaults.headers.common['Authorization'] = token
               commit('auth_success', token, user , role)
@@ -74,6 +76,7 @@ export default new Vuex.Store({
            commit('logout')
            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/logout', method: 'POST'})
            localStorage.removeItem('token')
+           localStorage.removeItem('admin')
            delete axios.defaults.headers.common['Authorization']
            resolve()
        })
