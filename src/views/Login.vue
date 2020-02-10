@@ -15,6 +15,8 @@
                 <li class="user-form__password user-form__item">
                         <label class="user-form__label">Пароль</label>
                         <input class="user-form__input" required v-model="password" type="password"/>
+                </li>
+                <li class="user-form__error">{{error}}</li>
                 <li class="user-form__sign-in user-form__item">
                     <button class="user-form__button" type="submit">Войти</button>
                     <div class="user-form__link">
@@ -33,7 +35,8 @@
         data(){
             return {
                 login : "",
-                password : ""
+                password : "",
+                error: ""
             }
         },
         methods: {
@@ -42,7 +45,10 @@
                 let password = this.password
                 this.$store.dispatch('authorization', { login, password })
                     .then(() => this.$router.push("/home"))
-                    .catch(err => alert(err));
+                    .catch(err => {
+                        this.$store.dispatch('logout')
+                        this.error = 'Неправильный логин или пароль'
+                    });
             }
         },
         computed: {

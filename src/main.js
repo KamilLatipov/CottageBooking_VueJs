@@ -12,6 +12,7 @@ const token = localStorage.getItem('token')
 
 Vue.prototype.$http.defaults.headers.common['Authorization'] = token
 
+
 Vue.component('')
 
 new Vue({

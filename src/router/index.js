@@ -8,6 +8,14 @@ import store from "../store/index"
 
 Vue.use(VueRouter)
 
+const ifNotAuthenticated = (to, from, next) => {
+  if (store.getters.isLoggedIn) {
+    next()
+    return
+  }
+  next('/')
+}
+
 const routes = [
   {
     path: '/about',
@@ -33,13 +41,14 @@ const routes = [
     name:'admin',
     component: Admin,
     beforeEnter: ((to, from, next) => {
-      if (localStorage.getItem('admin')) next()
+      if (store.getters.isAdmin) next()
     })
   },
   {
     path:'/home',
     name:'home',
-    component: Home
+    component: Home,
+    beforeEnter: ifNotAuthenticated,
   }
 ]
 
