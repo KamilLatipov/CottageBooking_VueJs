@@ -1,42 +1,44 @@
 <template>
-    <section class="main__list">
-        <div class="main__item">
-            <div class="main__images">
-                <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+    <section class="admin__list">
+        <div class="admin__item">
+            <div class="admin__images">
+                <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
             </div>
-            <div class="main__description">
-                <p class="wo">
-                    Блаблабла
-                </p>
+            <div class="admin__description">
                 <div class="box">
                     <section class="box-width">
                         <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
                     </section>
                 </div>
-                <ul class="main__user--list">
-                    <li class="main__user--item" v-for="item in requestList" v-bind:key="item.id">
-                        <p class="a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                        <button type="submit" @submit="acceptDate(item.id)">Да</button>
-                        <button @click="declineDate(item.id)">Нет</button>
-                        <p>{{item.owner.firstname}} {{item.owner.lastname}}</p>
+            </div>
+            <div class="admin__panel">
+                <h3 class="admin__title">Запросы:</h3>
+                <h3 class="admin__title">Одобрено:</h3>
+                <ul class="admin__user--list">
+                    <li class="admin__user--item" v-for="item in requestList" v-bind:key="item.id">
+
+                        <p class="admin__a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                        <p class="admin__b">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                        <span class="buttons">
+                          <button class="buttons__admin" @click="acceptDate(item.id)">Да</button>
+                          <button class="buttons__admin" @click="declineDate(item.id)">Нет</button>
+                        </span>
                     </li>
                 </ul>
-                <ul class="main__user--list">
-                    <li class="main__user--item" v-for="item in acceptedList" v-bind:key="item.id">
+                <ul class="admin__user--list">
+                    <li class="admin__user--item" v-for="item in acceptedList" v-bind:key="item.id">
+
                         <p class="a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                         <p class="b">{{item.owner.firstname}} {{item.owner.lastname}}</p>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="main__item">
-            <div class="main__images">
-                <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+        <div class="admin__item">
+            <div class="admin__images">
+                <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
             </div>
-            <div class="main_description">
-                <p>
-                    Блаблабла
-                </p>
+            <div class="admin_description">
                 <div class="box">
                     <section>
                         <date-picker v-model="value2" type="text" value-type="format" range placeholder="Select date range" :disabled-date="disabledDate" inline></date-picker>
@@ -44,11 +46,11 @@
                 </div>
             </div>
         </div>
-        <div class="main__item">
-            <div class="main__images">
-                <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+        <div class="admin__item">
+            <div class="admin__images">
+                <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
             </div>
-            <div class="main_description">
+            <div class="admin_description">
                 <p>
                     Блаблабла
                 </p>

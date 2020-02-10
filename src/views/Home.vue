@@ -12,7 +12,7 @@
           <section class="box-width">
             <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
             <form @submit="sendDate">
-              <button type="submit">Забронировать</button>
+              <button class="box-button" type="submit">Забронировать</button>
             </form>
           </section>
         </div>
@@ -44,25 +44,7 @@
         </p>
         <div class="box">
           <section>
-            <date-picker v-model="value2" type="text" value-type="format" range placeholder="Select date range" :disabled-date="disabledDate" inline></date-picker>
-          </section>
-        </div>
-      </div>
-    </div>
-    <div class="main__item">
-      <div class="main__images">
-        <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-      </div>
-      <div class="main_description">
-        <p>
-          Блаблабла
-        </p>
-        <div class="box">
-          <section>
-            <date-picker v-model="value3" type="date" value-type="format" range placeholder="Select date range" :disabled-date="disabledDate" inline></date-picker>
+            <date-picker v-model="value2" type="text" value-type="format" range placeholder="Select date range" :disabled-date="disabledDate2" inline></date-picker>
           </section>
         </div>
       </div>
@@ -103,11 +85,22 @@
       axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/my-dates', method: 'GET'})
               .then(response => {
                 this.userList = response.data;
+                for (let i = 0; i < this.userList.length; i++) {
+                  if (this.userList[i].intervalStatus === 'PENDING') {
+                    this.userList[i].intervalStatus = 'В ожидании согласнования'
+                  }
+                  else if (this.userList[i].intervalStatus === 'BOOKED') {
+                    this.userList[i].intervalStatus = 'Одобрено'
+                  }
+                  else {
+                    this.userList[i].intervalStatus = 'Отклонено'
+                  }
+                }
               });
     },
     methods: {
       disabledDate(date) {
-        let count = date < today;
+        let intervals = date < today;
         for (let i = 0; i < this.list.length; i++) {
          if (this.list[i].cottageID != 1) {continue}
            let string = this.list[i].startOfInterval;
@@ -120,9 +113,27 @@
            let a = parseInt(splited[0], 10);
            let b = parseInt(splited[1], 10) - 1;
            let c = parseInt(splited[2], 10);
-           count = count || (date > new Date(a, b, c) && date < new Date(a2, b2, c2));
+           intervals = intervals || (date > new Date(a, b, c) && date < new Date(a2, b2, c2));
        }
-        return count;
+        return intervals;
+      },
+      disabledDate2(date) {
+        let intervals = date < today;
+        for (let i = 0; i < this.list.length; i++) {
+          if (this.list[i].cottageID != 2) {continue}
+          let string = this.list[i].startOfInterval;
+          let string2 = this.list[i].endOfInterval;
+          let splited = string.split("-");
+          let splited2 = string2.split("-");
+          let a2 = parseInt(splited2[0], 10);
+          let b2 = parseInt(splited2[1], 10) - 1;
+          let c2 = parseInt(splited2[2], 10);
+          let a = parseInt(splited[0], 10);
+          let b = parseInt(splited[1], 10) - 1;
+          let c = parseInt(splited[2], 10);
+          intervals = intervals || (date > new Date(a, b, c) && date < new Date(a2, b2, c2));
+        }
+        return intervals;
       },
       sendDate: function() {
         let dates = {};
