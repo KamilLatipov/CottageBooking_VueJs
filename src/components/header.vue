@@ -6,11 +6,6 @@
                 <img width="67" height="67" src="../assets/house.png"/>
             </div>
              <div class="main-nav__user">
-                 <router-link to="/admin"  v-if="isAdmin === 'ROLE_ADMIN'">
-                     <p>
-                         Запросы
-                     </p>
-                 </router-link>
               <div v-if="isLoggedIn">
                   <a class="main-nav__logout" @click="logout">Выйти</a>
               </div>
@@ -31,8 +26,8 @@
             //isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
             ...mapGetters({
                 isLoggedIn: "isLoggedIn",
-                isAdmin: "isAdmin"
-            })
+            }),
+
         },
         methods: {
             logout: function () {

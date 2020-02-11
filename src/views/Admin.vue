@@ -1,14 +1,16 @@
 <template>
     <section class="admin__list">
         <div class="admin__item">
-            <div class="admin__images">
-                <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
-            </div>
             <div class="admin__description">
-                <div class="box">
-                    <section class="box-width">
-                        <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
-                    </section>
+                <div class="admin__images">
+                    <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
+                </div>
+                <div class="admin__calendar">
+                    <div class="box">
+                        <section class="box-width">
+                            <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
+                        </section>
+                    </div>
                 </div>
             </div>
             <div class="admin__panel">
@@ -33,14 +35,16 @@
             </div>
         </div>
         <div class="admin__item">
-            <div class="admin__images">
-                <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
-            </div>
-            <div class="admin_description">
-                <div class="box">
-                    <section>
-                        <date-picker v-model="value2" type="text" value-type="format" range placeholder="Select date range" :disabled-date="disabledDate2" inline></date-picker>
-                    </section>
+            <div class="admin__description">
+                <div class="admin__images">
+                    <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
+                </div>
+                <div class="admin__calendar">
+                    <div class="box">
+                        <section class="box-width">
+                            <date-picker v-model="value2" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate2" inline></date-picker>
+                        </section>
+                    </div>
                 </div>
             </div>
             <div class="admin__panel">

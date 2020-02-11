@@ -1,6 +1,11 @@
 <template>
   <!-- eslint-disable vue/no-use-v-if-with-v-for,vue/no-confusing-v-for-v-if -->
   <section class="main__list">
+    <router-link class="main__admin" to="/admin" v-show="isAdmin" >
+      <p >
+        Запросы
+      </p>
+    </router-link>
     <div class="main__item">
       <div class="main__images">
         <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
@@ -91,9 +96,7 @@
         userList2: []
       };
     },
-    //?token=u1TgIsKIv8
     //TODO Реализовать список так , чтобы список забронированных дат начинался с последнего
-    //TODO Блокировать даы в зависимости от статуса
     mounted() {
       axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/1', method: 'GET'})
               .then(response => {
@@ -141,6 +144,11 @@
                   this.$router.push("/")
                 }
               })
+    },
+    computed: {
+      isAdmin: function () {
+        return (localStorage.getItem('admin') === 'ROLE_ADMIN');
+      }
     },
     methods: {
       disabledDate(date) {

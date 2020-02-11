@@ -22,7 +22,14 @@
 }
 
 .admin__description {
-  width: 600px;
+  display: flex;
+  justify-content: space-around;
+
+  width: 100%;
+}
+
+.admin__calendar{
+  width: 500px;
   margin-top: 20px;
 }
 
