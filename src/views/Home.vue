@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/no-use-v-if-with-v-for,vue/no-confusing-v-for-v-if -->
   <section class="main__list">
     <div class="main__item">
       <div class="main__images">
@@ -11,7 +12,7 @@
         <div class="box">
           <section class="box-width">
             <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
-            <form @submit="sendDate">
+            <form @submit="sendDate()">
               <button class="box-button" type="submit">Забронировать</button>
             </form>
           </section>
@@ -22,10 +23,10 @@
           <p class="main__status">Статус:</p>
         </span>
           <ul class="main__user--list">
-            <li class="main__user--item" v-for="item in userList" v-bind:key="item">
-              <p class="a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-              <span class="border"></span>
-              <p class="b">{{ item.intervalStatus }}</p>
+            <li class="main__user--item" v-for="item1 in userList1" v-bind:key="item1.id">
+                <p class="a">C {{  item1.startOfInterval }} по {{ item1.endOfInterval}}</p>
+                <span class="border"></span>
+                <p class="b">{{ item1.intervalStatus }}</p>
             </li>
           </ul>
         </div>
@@ -38,17 +39,30 @@
         <img class="main__image" src="../assets/cabin.jpg"/>
         <img class="main__image" src="../assets/cabin.jpg"/>
       </div>
-      <div class="main_description">
-        <p>
-          Блаблабла
-        </p>
+      <div class="main__description">
         <div class="box">
-          <section>
-            <date-picker v-model="value2" type="text" value-type="format" range placeholder="Select date range" :disabled-date="disabledDate2" inline></date-picker>
+          <section class="box-width">
+            <date-picker v-model="value2" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate2" inline></date-picker>
+            <form @submit="sendDate2()">
+              <button class="box-button" type="submit">Забронировать</button>
+            </form>
           </section>
         </div>
+        <div class="main__user">
+          <span class="main__title">
+          <p class="main__dates">Выбранные даты:</p>
+          <p class="main__status">Статус:</p>
+          </span>
+          <ul class="main__user--list">
+            <li class="main__user--item" v-for="item in userList2" v-bind:key="item.id">
+                <p class="a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                <span class="border"></span>
+                <p class="b">{{ item.intervalStatus }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+     </div>
   </section>
 </template>
 
@@ -70,18 +84,35 @@
         status: null,
         showTimePanel: true,
         showTimeRangePanel: true,
-        list: [],
+        list1: [],
+        list2: [],
         userList: [],
+        userList1: [],
+        userList2: []
       };
     },
     //?token=u1TgIsKIv8
     //TODO Реализовать список так , чтобы список забронированных дат начинался с последнего
     //TODO Блокировать даы в зависимости от статуса
     mounted() {
-      axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals', method: 'GET'})
+      axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/1', method: 'GET'})
               .then(response => {
-                this.list = response.data;
-             });
+                this.list1 = response.data;
+             })
+              .catch(err => {
+                if (err.name === '403') {
+                  this.$router.push("/")
+                }
+             })
+      axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/2', method: 'GET'})
+              .then(response => {
+                this.list2 = response.data;
+              })
+              .catch(err => {
+                if (err.name === '403') {
+                  this.$router.push("/")
+                }
+              })
       axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/my-dates', method: 'GET'})
               .then(response => {
                 this.userList = response.data;
@@ -96,15 +127,27 @@
                     this.userList[i].intervalStatus = 'Отклонено'
                   }
                 }
-              });
+                for (let i = 0; i < this.userList.length; i++) {
+                  if (this.userList[i].cottageID === 1) {
+                    this.userList1.push(this.userList[i])
+                  }
+                  else {
+                    this.userList2.push(this.userList[i])
+                  }
+                }
+              })
+              .catch(err => {
+                if (err.name === '403') {
+                  this.$router.push("/")
+                }
+              })
     },
     methods: {
       disabledDate(date) {
         let intervals = date < today;
-        for (let i = 0; i < this.list.length; i++) {
-         if (this.list[i].cottageID != 1) {continue}
-           let string = this.list[i].startOfInterval;
-           let string2 = this.list[i].endOfInterval;
+        for (let i = 0; i < this.list1.length; i++) {
+           let string = this.list1[i].startOfInterval;
+           let string2 = this.list1[i].endOfInterval;
            let splited = string.split("-");
            let splited2 = string2.split("-");
            let a2 = parseInt(splited2[0], 10);
@@ -119,10 +162,9 @@
       },
       disabledDate2(date) {
         let intervals = date < today;
-        for (let i = 0; i < this.list.length; i++) {
-          if (this.list[i].cottageID != 2) {continue}
-          let string = this.list[i].startOfInterval;
-          let string2 = this.list[i].endOfInterval;
+        for (let i = 0; i < this.list2.length; i++) {
+          let string = this.list2[i].startOfInterval;
+          let string2 = this.list2[i].endOfInterval;
           let splited = string.split("-");
           let splited2 = string2.split("-");
           let a2 = parseInt(splited2[0], 10);
@@ -139,15 +181,50 @@
         let dates = {};
         dates.startOfInterval = this.value1[0];
         dates.endOfInterval = this.value1[1];
+        //  dates.endOfInterval = this.value1[1];
+        //if (id === 1) {
+        //  dates.startOfInterval = this.value1[0];
+        //  dates.endOfInterval = this.value1[1];
+        //}
+        //else {
+        //  dates.startOfInterval = this.value2[0];
+        //  dates.endOfInterval = this.value2[1];
+        //}
+        alert(dates.startOfInterval);
+        alert(dates.endOfInterval);
         dates.cottageID = 1;
+        alert(dates.cottageID);
+        alert(this.value2);
         this.$store.dispatch('sendDates', dates)
                 .then(() => alert(dates.startOfInterval))
-               .catch(err => alert(err))
+               .catch(err => console.log(err))
       },
+      sendDate2: function() {
+        let dates = {};
+        dates.startOfInterval = this.value2[0];
+        dates.endOfInterval = this.value2[1];
+        //  dates.endOfInterval = this.value1[1];
+        //if (id === 1) {
+        //  dates.startOfInterval = this.value1[0];
+        //  dates.endOfInterval = this.value1[1];
+        //}
+        //else {
+        //  dates.startOfInterval = this.value2[0];
+        //  dates.endOfInterval = this.value2[1];
+        //}
+        alert(dates.startOfInterval);
+        alert(dates.endOfInterval);
+        dates.cottageID = 2;
+        alert(dates.cottageID);
+        alert(this.value2);
+        this.$store.dispatch('sendDates', dates)
+                .then(() => alert(dates.startOfInterval))
+                .catch(err => console.log(err))
+      }
     },
     components: {
       DatePicker ,
-    }
+    },
   }
 </script>
 <style>

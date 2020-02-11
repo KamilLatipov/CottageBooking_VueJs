@@ -67,7 +67,9 @@ export default new Vuex.Store({
             .catch(err => {
               //commit('auth_error', err)
               //localStorage.removeItem('token')
-              reject(err)
+                if (err.statusCode === '409') {
+                    alert('Пользователь с таким логином или почтой уже есть')
+                }
             })
       })
     },
@@ -86,7 +88,12 @@ export default new Vuex.Store({
                 //?token=XlZGRSAkIF
             axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/add', data: dates, method: 'POST'})
                 .catch(err => {
-                    reject(err)
+                    if (err.statusCode === '400') {
+                        alert('выберите корректный промежуток')
+                    }
+                    else if (err.response.status === 409) {
+                        alert('Промежуток перескается с забронированными датами')
+                    }
                 })
 
         })
