@@ -154,7 +154,7 @@
                     let a = parseInt(splited[0], 10);
                     let b = parseInt(splited[1], 10) - 1;
                     let c = parseInt(splited[2], 10);
-                    intervals = intervals || (date > new Date(a, b, c) && date < new Date(a2, b2, c2));
+                    intervals = intervals || (!(date < new Date(a,b,c)) && !(date > new Date(a2, b2, c2)));
                 }
                 return intervals;
             },
@@ -171,7 +171,7 @@
                     let a = parseInt(splited[0], 10);
                     let b = parseInt(splited[1], 10) - 1;
                     let c = parseInt(splited[2], 10);
-                    intervals = intervals || (date > new Date(a, b, c) && date < new Date(a2, b2, c2));
+                    intervals = intervals || (!(date < new Date(a,b,c)) && !(date > new Date(a2, b2, c2)));
                 }
                 return intervals;
             },
