@@ -156,7 +156,7 @@
            let a = parseInt(splited[0], 10);
            let b = parseInt(splited[1], 10) - 1;
            let c = parseInt(splited[2], 10);
-           intervals = intervals || (date > new Date(a, b, c) && date < new Date(a2, b2, c2));
+          intervals = intervals || (!(date < new Date(a,b,c)) && !(date > new Date(a2, b2, c2)));
        }
         return intervals;
       },
@@ -190,13 +190,8 @@
         //  dates.startOfInterval = this.value2[0];
         //  dates.endOfInterval = this.value2[1];
         //}
-        alert(dates.startOfInterval);
-        alert(dates.endOfInterval);
         dates.cottageID = 1;
-        alert(dates.cottageID);
-        alert(this.value2);
         this.$store.dispatch('sendDates', dates)
-                .then(() => alert(dates.startOfInterval))
                .catch(err => console.log(err))
       },
       sendDate2: function() {
@@ -212,13 +207,8 @@
         //  dates.startOfInterval = this.value2[0];
         //  dates.endOfInterval = this.value2[1];
         //}
-        alert(dates.startOfInterval);
-        alert(dates.endOfInterval);
         dates.cottageID = 2;
-        alert(dates.cottageID);
-        alert(this.value2);
         this.$store.dispatch('sendDates', dates)
-                .then(() => alert(dates.startOfInterval))
                 .catch(err => console.log(err))
       }
     },

@@ -16,6 +16,14 @@
 
   &__logout {
     color: black;
+
+    padding-left: 20px;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 }
 
