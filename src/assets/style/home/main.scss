@@ -51,6 +51,14 @@
 
   outline : none;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 }
 
 .main__images {

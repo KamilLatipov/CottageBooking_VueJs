@@ -16,28 +16,28 @@
         <div class="box">
           <section class="box-width">
             <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
-            <form @submit="sendDate()">
-              <button class="box-button" type="submit">Забронировать</button>
-            </form>
+              <form @submit="sendDate()">
+                  <button class="box-button" type="submit">Забронировать</button>
+              </form>
           </section>
         </div>
-        <div class="user">
-        <span class="user__title">
-          <p class="user__dates">Выбранные даты:</p>
-          <p class="user__status">Статус:</p>
-        </span>
-          <ul class="user__list">
-            <li class="user__item" v-for="item1 in userList1.reverse()" v-bind:key="item1.id">
-                <p class="user__booked">C {{  item1.startOfInterval }} по {{ item1.endOfInterval}}</p>
-                <span class="border"></span>
-                <div class="user__case">
-                    <p class="user__pending">{{ item1.intervalStatus }}</p>
-                    <button class="user__decline" @click="declineDate(item1.id)">Отменить</button>
-                    <p class="user__decline--side">&times;</p>
-                </div>
-            </li>
-          </ul>
-        </div>
+          <div class="user">
+          <span class="user__title">
+            <p class="user__dates">Выбранные даты:</p>
+            <p class="user__status">Статус:</p>
+          </span>
+              <ul class="user__list">
+                  <li class="user__item" v-for="item1 in userList1.reverse()" v-bind:key="item1.id">
+                      <p class="user__booked">C {{  item1.startOfInterval }} по {{ item1.endOfInterval}}</p>
+                      <span class="border"></span>
+                      <div class="user__case">
+                          <p class="user__pending">{{ item1.intervalStatus }}</p>
+                          <button class="user__decline" @click="declineDate(item1.id)">Отменить</button>
+                          <p class="user__decline--side">&times;</p>
+                      </div>
+                  </li>
+              </ul>
+          </div>
       </div>
     </div>
     <div class="main__item">
@@ -58,14 +58,18 @@
         </div>
         <div class="user">
           <span class="user__title">
-          <p class="user__dates">Выбранные даты:</p>
-          <p class="user__status">Статус:</p>
+            <p class="user__dates">Выбранные даты:</p>
+            <p class="user__status">Статус:</p>
           </span>
           <ul class="user__list">
             <li class="user__item" v-for="item in userList2.reverse()" v-bind:key="item.id">
                 <p class="user__booked">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                 <span class="border"></span>
-                <p class="user__pending">{{ item.intervalStatus }}</p>
+                <div class="user__case">
+                    <p class="user__pending">{{ item.intervalStatus }}</p>
+                    <button class="user__decline" @click="declineDate(item.id)">Отменить</button>
+                    <p class="user__decline--side">&times;</p>
+                </div>
             </li>
           </ul>
         </div>
@@ -88,10 +92,7 @@
         value1: new Date(),
         value2: new Date(),
         value3: new Date(),
-        dates1: null,
-        status: null,
         showTimePanel: true,
-        showTimeRangePanel: true,
         list1: [],
         list2: [],
         userList: [],
@@ -203,13 +204,13 @@
         this.$store.dispatch('sendDates', dates)
                 .catch(err => console.log(err))
       },
-      declineDate: function(id) {
-        axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/' + id , method: 'POST'})
+        declineDate: function(id) {
+            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/' + id , method: 'POST'})
                 .then(resp => {
-                  location.reload();
+                    location.reload();
                 })
                 .catch( err => alert(err))
-      }
+        }
     },
     components: {
       DatePicker ,
