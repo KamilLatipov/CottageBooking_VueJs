@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
 
-
   width: 1300px;
   margin: 0 auto 80px auto;
 }
@@ -32,89 +31,10 @@
   margin-top: 20px;
 }
 
-.main__user {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  margin-top: 20px;
-}
-
-.main__title {
-  display: flex;
-  justify-content: space-around;
-
-  width: 485px;
-}
-
-.main__user--list{
-  display: flex;
-  flex-direction: column;
-
-  overflow-y: scroll;
-
-  width: 470px;
-  height: 200px;
-
-  padding: 0 0 0 15px;
-
-  border-bottom: 1px solid rgba(0,0,0, 0.5);
-
-  box-shadow:  inset 0 0 10px hsla(0,0%,0%,.2),
-  inset -10px -5px 15px -2px  #8bc540;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-    background-color: white;
-
-    &-track {
-      -webkit-box-shadow: inset 0 0 6px grey;
-      background-color: #8bc540;
-    }
-
-    &-thumb {
-      background-color: rgba(108, 122, 137, 1);
-    }
-  }
-}
-
-.main__user--item {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  position: relative;
-
-  width: 440px;
-  height: 60px;
-
-  margin: 10px 0;
-  padding: 5px 6px;
-
-  font-size: 17px;
-
-  border: 1px solid black;
-  border-radius: 15px;
-}
-
-.a {
-  width: 260px
-}
-
-.b {
-  margin: 0 0 0 30px;
-
-  width: 160px;
-
-  text-align: center;
-}
-
 .box-width {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
-  width: 490px;
 }
 
 .box-button {
@@ -131,18 +51,6 @@
 
   outline : none;
   cursor: pointer;
-}
-
-.border {
-  position: absolute;
-
-  top: 0;
-  left: 270px;
-
-  height: 66px;
-  width: 45px;
-  border-left: 1px solid black;
-  border-radius: 13px;
 }
 
 .main__images {
@@ -168,8 +76,12 @@
 
 
 @media (max-width: 400px) {
-  .admin__list {
+  .main__list {
     width: 390px;
+  }
+
+  .main__description {
+    width: 397px;
   }
 
   .main__item {
@@ -184,24 +96,7 @@
     }
   }
 
-  .main__user--list {
-    width: 360px;
-  }
-
-  .main__user--item {
-    width: 330px;
-
-    padding: 10px 7px;
-  }
-
-  .a {
-    margin: 5px 0 0 40px;
-    width: 120px;
-  }
-
-  .b {
-    width: 100px;
-    margin: 5px 0 0 50px;
-
+  .box-width {
+    width: 100%;
   }
 }

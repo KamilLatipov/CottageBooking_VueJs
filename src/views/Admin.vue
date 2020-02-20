@@ -14,22 +14,27 @@
                 </div>
             </div>
             <div class="admin__panel">
-                <h3 class="admin__title">Запросы:</h3>
-                <h3 class="admin__title">Одобрено:</h3>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="item in requestList1" v-bind:key="item.id">
-                            <p class="admin__a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                            <p class="admin__b">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                            <span class="buttons">
-                            <button class="buttons__admin" @click="acceptDate(item.id)">Да</button>
-                            <button class="buttons__admin" @click="declineDate(item.id)">Нет</button>
+                <span class="user__title user__title--admin">
+                  <p class="user__dates">Запросы:</p>
+                  <p class="user__dates">Одобрено:</p>
+                </span>
+                <ul class="user__list">
+                    <li class="user__item" v-for="item in requestList1.reverse()" v-bind:key="item.id">
+                        <p class="user__booked user__booked--admin">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                        <p class="user__name user__name--admin">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                        <span class="buttons">
+                            <button class="buttons__admin buttons__admin--accept" @click="acceptDate(item.id)">Да</button>
+                            <button class="buttons__admin buttons__admin--decline" @click="declineDate(item.id)">Нет</button>
                         </span>
                     </li>
                 </ul>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="items in bookedList1" v-bind:key="items.id">
-                            <p class="a">C {{  items.startOfInterval }} по {{ items.endOfInterval}}</p>
-                            <p class="b">{{items.owner.firstname}} {{items.owner.lastname}}</p>
+                <ul class="user__list">
+                    <li class="user__item" v-for="item in bookedList1.reverse()" v-bind:key="item.id">
+                        <p class="user__booked">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                        <span class="buttons">
+                            <button class="buttons__admin buttons__admin--decline buttons__admin--booked" @click="declineDate(item.id)">&times;</button>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -48,22 +53,27 @@
                 </div>
             </div>
             <div class="admin__panel">
-                <h3 class="admin__title">Запросы:</h3>
-                <h3 class="admin__title">Одобрено:</h3>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="item2 in requestList2" v-bind:key="item2.id">
-                            <p class="admin__a">C {{  item2.startOfInterval }} по {{ item2.endOfInterval}}</p>
-                            <p class="admin__b">{{item2.owner.firstname}} {{item2.owner.lastname}}</p>
-                            <span class="buttons">
-                            <button class="buttons__admin" @click="acceptDate(item2.id)">Да</button>
-                            <button class="buttons__admin" @click="declineDate(item2.id)">Нет</button>
+                <span class="user__title user__title--admin">
+                  <p class="user__dates">Запросы:</p>
+                  <p class="user__dates">Одобрено:</p>
+                </span>
+                <ul class="user__list">
+                    <li class="user__item" v-for="item2 in requestList2.reverse()" v-bind:key="item2.id">
+                        <p class="user__booked user__booked--admin">C {{  item2.startOfInterval }} по {{ item2.endOfInterval}}</p>
+                        <p class="user__name user__name--admin">{{item2.owner.firstname}} {{item2.owner.lastname}}</p>
+                        <span class="buttons">
+                            <button class="buttons__admin buttons__admin--accept" @click="acceptDate(item2.id)">Да</button>
+                            <button class="buttons__admin buttons__admin--decline" @click="declineDate(item2.id)">Нет</button>
                         </span>
                     </li>
                 </ul>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="iem3 in bookedList2" v-bind:key="iem3.id">
-                        <p class="a">C {{  iem3.startOfInterval }} по {{ iem3.endOfInterval}}</p>
-                        <p class="b">{{iem3.owner.firstname}} {{iem3.owner.lastname}}</p>
+                <ul class="user__list">
+                    <li class="user__item" v-for="item3 in bookedList2.reverse()" v-bind:key="item3.id">
+                        <p class="user__booked">C {{  item3.startOfInterval }} по {{ item3.endOfInterval}}</p>
+                        <p class="user__name">{{item3.owner.firstname}} {{item3.owner.lastname}}</p>
+                        <span class="buttons">
+                            <button class="buttons__admin buttons__admin--decline buttons__admin--booked" @click="declineDate(item3.id)">&times;</button>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -99,7 +109,8 @@
                 bookedList2: [],
             };
         },
-//?token=u1TgIsKIv8
+
+
         mounted() {
             axios({url: 'https://abrom-booking.herokuapp.com/api/v1/admin/requests', method: 'GET'})
                 .then(response => {
