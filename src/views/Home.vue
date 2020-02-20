@@ -22,10 +22,10 @@
           </section>
         </div>
           <div class="user">
-          <span class="user__title">
-            <p class="user__dates">Выбранные даты:</p>
-            <p class="user__status">Статус:</p>
-          </span>
+              <span class="user__title">
+               <p class="user__dates">Выбранные даты:</p>
+               <p class="user__status">Статус:</p>
+              </span>
               <ul class="user__list">
                   <li class="user__item" v-for="item1 in userList1.reverse()" v-bind:key="item1.id">
                       <p class="user__booked">C {{  item1.startOfInterval }} по {{ item1.endOfInterval}}</p>
@@ -91,8 +91,8 @@
       return {
         value1: new Date(),
         value2: new Date(),
-        value3: new Date(),
         showTimePanel: true,
+          showTimeRangePanel: true,
         list1: [],
         list2: [],
         userList: [],
