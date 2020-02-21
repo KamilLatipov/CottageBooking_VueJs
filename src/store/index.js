@@ -57,16 +57,9 @@ export default new Vuex.Store({
         commit('auth_request')
         axios({url: 'https://abrom-booking.herokuapp.com/api/v1/users/add', data: user, method: 'POST' })
             .then(resp => {
-              //const token = resp.data.token
-              //const user = resp.data.user
-              //localStorage.setItem('token', token)
-              //axios.defaults.headers.common['Authorization'] = token
-              //commit('auth_success', token, user)
               resolve(resp)
             })
             .catch(err => {
-              //commit('auth_error', err)
-              //localStorage.removeItem('token')
                 if (err.statusCode === '409') {
                     alert('Пользователь с таким логином или почтой уже есть')
                 }
@@ -85,10 +78,9 @@ export default new Vuex.Store({
     },
     sendDates({commit} , dates) {
         return new Promise((resolve, reject) => {
-                //?token=XlZGRSAkIF
             axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/add', data: dates, method: 'POST'})
                 .catch(err => {
-                    if (err.statusCode === '400') {
+                    if (err.response.status === 400) {
                         alert('выберите корректный промежуток')
                     }
                     else if (err.response.status === 409) {
@@ -102,7 +94,6 @@ export default new Vuex.Store({
   modules: {
   },
   getters : {
-    isAdmin: state => state.role,
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
   }

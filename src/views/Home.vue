@@ -27,7 +27,7 @@
           <p class="user__status">Статус:</p>
         </span>
           <ul class="user__list">
-            <li class="user__item" v-for="item1 in userList1.reverse()" v-bind:key="item1.id">
+            <li class="user__item" v-for="item1 in userList1" v-bind:key="item1.id">
                 <p class="user__booked">C {{  item1.startOfInterval }} по {{ item1.endOfInterval}}</p>
                 <span class="border"></span>
                 <div class="user__case">
@@ -62,7 +62,7 @@
           <p class="user__status">Статус:</p>
           </span>
           <ul class="user__list">
-            <li class="user__item" v-for="item in userList2.reverse()" v-bind:key="item.id">
+            <li class="user__item" v-for="item in userList2" v-bind:key="item.id">
                 <p class="user__booked">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                 <span class="border"></span>
                 <p class="user__pending">{{ item.intervalStatus }}</p>
@@ -87,9 +87,6 @@
       return {
         value1: new Date(),
         value2: new Date(),
-        value3: new Date(),
-        dates1: null,
-        status: null,
         showTimePanel: true,
         showTimeRangePanel: true,
         list1: [],
