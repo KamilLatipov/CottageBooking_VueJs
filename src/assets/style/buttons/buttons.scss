@@ -2,21 +2,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
-  position: relative;
-
-  width: 20%;
-}
-
-.button__decline {
-  display: none;
-
-  position: absolute;
 }
 
 .buttons__admin {
   padding: 4px 15px;
 
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:first-child {
+    margin-bottom: 5px;
+  }
+
+  background-color: #8bc540;
   text-decoration: none;
   border: none;
   border-radius: 10px;
@@ -26,6 +25,7 @@
 
   outline : none;
   cursor: pointer;
+<<<<<<< HEAD
 
   &--accept {
     background-color: #8bc540;
@@ -60,4 +60,6 @@
   &:first-child {
     margin-bottom: 5px;
   }
+=======
+>>>>>>> parent of e1e5ac5... release 1.5
 }
