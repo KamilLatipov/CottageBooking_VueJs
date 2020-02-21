@@ -90,7 +90,6 @@
       return {
         value1: new Date(),
         value2: new Date(),
-        value3: new Date(),
         showTimePanel: true,
         list1: [],
         list2: [],
@@ -191,15 +190,6 @@
         let dates = {};
         dates.startOfInterval = this.value1[0];
         dates.endOfInterval = this.value1[1];
-        //  dates.endOfInterval = this.value1[1];
-        //if (id === 1) {
-        //  dates.startOfInterval = this.value1[0];
-        //  dates.endOfInterval = this.value1[1];
-        //}
-        //else {
-        //  dates.startOfInterval = this.value2[0];
-        //  dates.endOfInterval = this.value2[1];
-        //}
         dates.cottageID = 1;
         this.$store.dispatch('sendDates', dates)
                .catch(err => console.log(err))
@@ -208,15 +198,6 @@
         let dates = {};
         dates.startOfInterval = this.value2[0];
         dates.endOfInterval = this.value2[1];
-        //  dates.endOfInterval = this.value1[1];
-        //if (id === 1) {
-        //  dates.startOfInterval = this.value1[0];
-        //  dates.endOfInterval = this.value1[1];
-        //}
-        //else {
-        //  dates.startOfInterval = this.value2[0];
-        //  dates.endOfInterval = this.value2[1];
-        //}
         dates.cottageID = 2;
         this.$store.dispatch('sendDates', dates)
                 .catch(err => console.log(err))

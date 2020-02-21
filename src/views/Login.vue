@@ -9,7 +9,7 @@
                     </h1>
                 </li>
                 <li class="user-form__login user-form__item">
-                        <label class="user-form__label">Ваша почта</label>
+                        <label class="user-form__label">Ваша логин</label>
                         <input class="user-form__input" required v-model="login" type="text"/>
                 </li>
                 <li class="user-form__password user-form__item">
