@@ -85,7 +85,6 @@ export default new Vuex.Store({
     },
     sendDates({commit} , dates) {
         return new Promise((resolve, reject) => {
-                //?token=XlZGRSAkIF
             axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/add', data: dates, method: 'POST'})
                 .catch(err => {
                     if (err.statusCode === '400') {
