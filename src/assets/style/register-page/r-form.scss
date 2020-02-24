@@ -1,3 +1,5 @@
+@import "../../var.scss";
+
 .r-form {
   display: flex;
   flex-wrap: wrap;
@@ -62,7 +64,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: $mobile) {
   .r-form {
     width: 400px;
 

@@ -1,19 +1,20 @@
+@import "../../var.scss";
+
 .buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
+  width: 20%;
+
+  &--booked {
+    width: 7%;
+    height: 100%;
+  }
 }
 
 .buttons__admin {
   padding: 4px 15px;
-
-  &:hover {
-    opacity: 0.5;
-  }
-
-  &:first-child {
-    margin-bottom: 5px;
-  }
 
   background-color: #8bc540;
   text-decoration: none;
@@ -26,26 +27,12 @@
   outline : none;
   cursor: pointer;
 
-  &--accept {
-    background-color: #8bc540;
+  &--mobile {
+    display: none;
   }
 
-  &--decline {
-    background-color: rgba(108, 122, 137, 1);
-  }
-
-  &--booked {
-    position: absolute;
-    top: -35px;
-    left: 30.6px;
-
-
-    width: 50px;
-    height: 70px;
-
-    font-size: 30px;
-
-    border-radius: 0 15px 15px 0;
+  &:first-child {
+    margin-bottom: 5px;
   }
 
   &:hover {
@@ -55,8 +42,22 @@
   &:active {
     opacity: 0.5;
   }
+}
 
-  &:first-child {
-    margin-bottom: 5px;
+@media (max-width: $mobile) {
+  .buttons--booked {
+    width: 20%;
+  }
+
+  .buttons__admin--cover {
+    display: none;
+  }
+
+  .buttons__admin--mobile {
+    display: block;
+
+    padding: 0 10px;
+
+    font-size: 12px;
   }
 }

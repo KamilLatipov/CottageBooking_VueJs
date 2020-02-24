@@ -1,3 +1,5 @@
+@import "../../var.scss";
+
 .login-window {
   width: 600px;
 
@@ -12,7 +14,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: $mobile) {
   .login-window {
     width: 390px;
 

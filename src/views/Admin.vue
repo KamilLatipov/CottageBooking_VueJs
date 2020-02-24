@@ -13,23 +13,31 @@
                     </div>
                 </div>
             </div>
-            <div class="admin__panel">
-                <h3 class="admin__title">Запросы:</h3>
-                <h3 class="admin__title">Одобрено:</h3>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="item in requestList1" v-bind:key="item.id">
-                            <p class="admin__a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                            <p class="admin__b">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                            <span class="buttons">
+            <div class="user user--admin">
+                <h3 class="user__title first">Запросы:</h3>
+                <h3 class="user__title third">Одобрено:</h3>
+                <ul class="user__list second">
+                    <li class="user__item" v-for="item in requestList1" v-bind:key="item.id">
+                        <p class="user__dates user__dates--admin">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                        <div class="buttons">
                             <button class="buttons__admin" @click="acceptDate(item.id)">Да</button>
                             <button class="buttons__admin" @click="declineDate(item.id)">Нет</button>
-                        </span>
+                        </div>
                     </li>
                 </ul>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="items in bookedList1" v-bind:key="items.id">
-                            <p class="a">C {{  items.startOfInterval }} по {{ items.endOfInterval}}</p>
-                            <p class="b">{{items.owner.firstname}} {{items.owner.lastname}}</p>
+                <ul class="user__list fourth">
+                    <li class="user__item" v-for="item in bookedList1" v-bind:key="item.id">
+                        <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                        <div class="buttons buttons--booked">
+                            <div class="buttons__admin--cover">
+                                <p class="cover">&times;</p>
+                                <span class="buttons__admin--decline" @click="declineDate(item.id)">
+                                    Отменить
+                                </span>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -47,23 +55,32 @@
                     </div>
                 </div>
             </div>
-            <div class="admin__panel">
-                <h3 class="admin__title">Запросы:</h3>
-                <h3 class="admin__title">Одобрено:</h3>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="item2 in requestList2" v-bind:key="item2.id">
-                            <p class="admin__a">C {{  item2.startOfInterval }} по {{ item2.endOfInterval}}</p>
-                            <p class="admin__b">{{item2.owner.firstname}} {{item2.owner.lastname}}</p>
-                            <span class="buttons">
-                            <button class="buttons__admin" @click="acceptDate(item2.id)">Да</button>
-                            <button class="buttons__admin" @click="declineDate(item2.id)">Нет</button>
-                        </span>
+            <div class="user user--admin">
+                <h3 class="user__title user__title--first">Запросы:</h3>
+                <h3 class="user__title user__title--second">Одобрено:</h3>
+                <ul class="user__list">
+                    <li class="user__item" v-for="item in requestList2" v-bind:key="item.id">
+                        <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                        <div class="buttons">
+                            <button class="buttons__admin" @click="acceptDate(item.id)">Да</button>
+                            <button class="buttons__admin" @click="declineDate(item.id)">Нет</button>
+                        </div>
                     </li>
                 </ul>
-                <ul class="admin__user--list">
-                    <li class="admin__user--item" v-for="iem3 in bookedList2" v-bind:key="iem3.id">
-                        <p class="a">C {{  iem3.startOfInterval }} по {{ iem3.endOfInterval}}</p>
-                        <p class="b">{{iem3.owner.firstname}} {{iem3.owner.lastname}}</p>
+                <ul class="user__list">
+                    <li class="user__item" v-for="item in bookedList2" v-bind:key="item.id">
+                        <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                        <div class="buttons buttons--booked">
+                            <div class="buttons__admin--cover">
+                                <p class="cover">&times;</p>
+                                <span class="buttons__admin--decline" @click="declineDate(item.id)">
+                                    Отменить
+                                </span>
+                            </div>
+                            <button class="buttons__admin buttons__admin--mobile" @click="declineDate(item.id)">Отменить</button>
+                        </div>
                     </li>
                 </ul>
             </div>

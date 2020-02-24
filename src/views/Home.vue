@@ -21,16 +21,21 @@
               </form>
           </section>
         </div>
-        <div class="main__user">
-        <span class="main__title">
-          <p class="main__dates">Выбранные даты:</p>
-          <p class="main__status">Статус:</p>
-        </span>
-          <ul class="main__user--list">
-            <li class="main__user--item" v-for="item1 in userList1" v-bind:key="item1.id">
-                <p class="a">C {{  item1.startOfInterval }} по {{ item1.endOfInterval}}</p>
-                <span class="border"></span>
-                <p class="b">{{ item1.intervalStatus }}</p>
+        <div class="user">
+          <div class="user__title">
+            <p class="user__title--first">Выбранные даты:</p>
+            <p class="user__title--second">Статус:</p>
+          </div>
+          <ul class="user__list">
+            <li class="user__item" v-for="item in userList1" v-bind:key="item.id">
+                <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                <div class="user__switch">
+                  <div class="user__hover">
+                    <p>&times;</p>
+                  </div>
+                  <p class="user__status">{{ item.intervalStatus }}</p>
+                  <p class="user__decline">Отменить</p>
+                </div>
             </li>
           </ul>
         </div>
@@ -53,25 +58,18 @@
           </section>
         </div>
         <div class="user">
-        <div class="main__user">
-          <span class="main__title">
-          <p class="main__dates">Выбранные даты:</p>
-          <p class="main__status">Статус:</p>
-          </span>
-          <ul class="main__user--list">
-            <li class="main__user--item" v-for="item in userList2" v-bind:key="item.id">
-                <p class="a">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+          <div class="user__title">
+            <p class="user__title--first">Выбранные даты:</p>
+            <p class="user__title--second">Статус:</p>
+          </div>
+          <ul class="user__list">
+            <li class="user__item" v-for="item in userList2" v-bind:key="item.id">
+                <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                 <span class="border"></span>
-                <div class="user__case">
-                    <p class="user__pending">{{ item.intervalStatus }}</p>
-                    <button class="user__decline" @click="declineDate(item.id)">Отменить</button>
-                    <p class="user__decline--side">&times;</p>
-                </div>
-                <p class="b">{{ item.intervalStatus }}</p>
+                <p class="user__status">{{ item.intervalStatus }}</p>
             </li>
           </ul>
         </div>
-      </div>
      </div>
     </div>
   </section>

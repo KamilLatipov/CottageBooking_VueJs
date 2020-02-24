@@ -6,17 +6,20 @@
 @import "style/register-page/r-form";
 @import "style/buttons/buttons";
 @import "style/admin-page/admin";
+@import "style/user/user";
+
+@import "var.scss";
 
 .mx-datepicker-inline {
   width: 410px;
 
-  @media (max-width: 400px) {
+  @media (max-width: $mobile) {
     width: 380px;
   }
 }
 
 body {
-  @media (max-width: 400px) {
+  @media (max-width: $mobile) {
     width: 400px;
   }
 }
