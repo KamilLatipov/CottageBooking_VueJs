@@ -1,5 +1,10 @@
 <template>
     <section class="admin__list">
+        <router-link class="main__admin" to="/home">
+            <p >
+                Главная
+            </p>
+        </router-link>
         <div class="admin__item">
             <div class="admin__description">
                 <div class="admin__images">
@@ -17,7 +22,7 @@
                 <h3 class="user__title first">Запросы:</h3>
                 <h3 class="user__title third">Одобрено:</h3>
                 <ul class="user__list second">
-                    <li class="user__item" v-for="item in requestList1" v-bind:key="item.id">
+                    <li class="user__item" v-for="item in reverseList(requestList1)" v-bind:key="item.id">
                         <p class="user__dates user__dates--admin">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                         <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
                         <div class="buttons">
@@ -27,16 +32,14 @@
                     </li>
                 </ul>
                 <ul class="user__list fourth">
-                    <li class="user__item" v-for="item in bookedList1" v-bind:key="item.id">
+                    <li class="user__item" v-for="item in reverseList(bookedList1)" v-bind:key="item.id">
                         <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                        <div class="buttons buttons--booked">
-                            <div class="buttons__admin--cover">
-                                <p class="cover">&times;</p>
-                                <span class="buttons__admin--decline" @click="declineDate(item.id)">
-                                    Отменить
-                                </span>
+                        <div class="user__switch">
+                            <div class="user__hover">
+                                <p>&times;</p>
                             </div>
+                            <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                            <p class="user__decline">Отменить</p>
                         </div>
                     </li>
                 </ul>
@@ -59,7 +62,7 @@
                 <h3 class="user__title user__title--first">Запросы:</h3>
                 <h3 class="user__title user__title--second">Одобрено:</h3>
                 <ul class="user__list">
-                    <li class="user__item" v-for="item in requestList2" v-bind:key="item.id">
+                    <li class="user__item" v-for="item in reverseList(requestList2)" v-bind:key="item.id">
                         <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                         <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
                         <div class="buttons">
@@ -69,17 +72,14 @@
                     </li>
                 </ul>
                 <ul class="user__list">
-                    <li class="user__item" v-for="item in bookedList2" v-bind:key="item.id">
+                    <li class="user__item" v-for="item in reverseList(bookedList2)" v-bind:key="item.id">
                         <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                        <div class="buttons buttons--booked">
-                            <div class="buttons__admin--cover">
-                                <p class="cover">&times;</p>
-                                <span class="buttons__admin--decline" @click="declineDate(item.id)">
-                                    Отменить
-                                </span>
+                        <div class="user__switch">
+                            <div class="user__hover">
+                                <p>&times;</p>
                             </div>
-                            <button class="buttons__admin buttons__admin--mobile" @click="declineDate(item.id)">Отменить</button>
+                            <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
+                            <p class="user__decline">Отменить</p>
                         </div>
                     </li>
                 </ul>
@@ -210,6 +210,9 @@
                         location.reload();
                     })
                     .catch( err => alert(err))
+            },
+            reverseList: function(list) {
+                return list.slice().reverse();
             }
         },
         components: {

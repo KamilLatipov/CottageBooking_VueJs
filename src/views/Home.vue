@@ -6,28 +6,34 @@
       </p>
     </router-link>
     <div class="main__item">
-      <div class="main__images">
-        <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-      </div>
       <div class="main__description">
-        <div class="box">
-          <section class="box-width">
-            <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
-              <form @submit="sendDate()">
-                  <button class="box-button" type="submit">Забронировать</button>
-              </form>
-          </section>
+        <div class="main__images">
+          <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+          <img class="main__image" src="../assets/cabin.jpg"/>
+          <img class="main__image" src="../assets/cabin.jpg"/>
+          <img class="main__image" src="../assets/cabin.jpg"/>
         </div>
+        <div class="main__calendar">
+         <div class="box">
+           <section class="box-width">
+             <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
+               <form @submit="sendDate()">
+                   <button class="box-button" type="submit">Забронировать</button>
+               </form>
+           </section>
+         </div>
+        </div>
+      </div>
         <div class="user">
-          <div class="user__title">
-            <p class="user__title--first">Выбранные даты:</p>
+          <div class="user__title first">
+            <p class="user__title--first">Выбранные даты :</p>
             <p class="user__title--second">Статус:</p>
           </div>
-          <ul class="user__list">
-            <li class="user__item" v-for="item in userList1" v-bind:key="item.id">
+          <p class="user__title third">
+            Отказы :
+          </p>
+          <ul class="user__list second">
+            <li class="user__item" v-for="item in acceptedList(userList1)" v-bind:key="item.id">
                 <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                 <div class="user__switch">
                   <div class="user__hover">
@@ -38,8 +44,13 @@
                 </div>
             </li>
           </ul>
+          <ul class="user__list fourth">
+            <li class="user__item" v-for="item in declineList(userList1)" v-bind:key="item.id">
+              <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+              <p class="user__status">{{ item.intervalStatus }}</p>
+            </li>
+          </ul>
         </div>
-      </div>
     </div>
     <div class="main__item">
       <div class="main__images">
@@ -63,10 +74,15 @@
             <p class="user__title--second">Статус:</p>
           </div>
           <ul class="user__list">
-            <li class="user__item" v-for="item in userList2" v-bind:key="item.id">
+            <li class="user__item" v-for="item in acceptedList(userList2)" v-bind:key="item.id">
                 <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                <span class="border"></span>
-                <p class="user__status">{{ item.intervalStatus }}</p>
+                <div class="user__switch">
+                 <div class="user__hover">
+                  <p>&times;</p>
+                 </div>
+                 <p class="user__status">{{ item.intervalStatus }}</p>
+                 <p class="user__decline">Отменить</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -200,14 +216,23 @@
         this.$store.dispatch('sendDates', dates)
                 .catch(err => console.log(err))
       },
-        declineDate: function(id) {
-            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/' + id , method: 'POST'})
+      declineDate: function(id) {
+        axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/' + id , method: 'POST'})
                 .then(resp => {
                     location.reload();
                 })
                 .catch( err => alert(err))
-        }
+        },
+      reverseList: function(list) {
+        return list.slice().reverse();
       },
+      acceptedList: function(list) {
+        return list.slice().filter(item => (item.intervalStatus !== 'Отклонено')).reverse();
+      },
+      declineList: function(list) {
+        return list.slice().filter(item => (item.intervalStatus === 'Отклонено')).reverse();
+      }
+    },
     components: {
       DatePicker ,
     },

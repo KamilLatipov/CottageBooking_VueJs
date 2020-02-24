@@ -30,8 +30,18 @@
 }
 
 .main__description {
-  width: 50%;
-  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  width: 100%;
+
+  margin-top: 10px;
+}
+
+.main__calendar {
+  width: 41%;
+  margin-top: 4%;
 }
 
 .main__images {
