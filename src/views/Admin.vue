@@ -38,8 +38,8 @@
                             <div class="user__hover">
                                 <p>&times;</p>
                             </div>
+                            <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
                             <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                            <p class="user__decline">Отменить</p>
                         </div>
                     </li>
                 </ul>
@@ -78,8 +78,8 @@
                             <div class="user__hover">
                                 <p>&times;</p>
                             </div>
+                            <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
                             <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                            <p class="user__decline">Отменить</p>
                         </div>
                     </li>
                 </ul>
@@ -116,7 +116,6 @@
                 bookedList2: [],
             };
         },
-//?token=u1TgIsKIv8
         mounted() {
             axios({url: 'https://abrom-booking.herokuapp.com/api/v1/admin/requests', method: 'GET'})
                 .then(response => {

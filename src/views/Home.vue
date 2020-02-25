@@ -39,8 +39,8 @@
                   <div class="user__hover">
                     <p>&times;</p>
                   </div>
+                    <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
                   <p class="user__status">{{ item.intervalStatus }}</p>
-                  <p class="user__decline">Отменить</p>
                 </div>
             </li>
           </ul>
@@ -53,40 +53,51 @@
         </div>
     </div>
     <div class="main__item">
-      <div class="main__images">
-        <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-        <img class="main__image" src="../assets/cabin.jpg"/>
-      </div>
-      <div class="main__description">
-        <div class="box">
-          <section class="box-width">
-            <date-picker v-model="value2" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate2" inline></date-picker>
-            <form @submit="sendDate2()">
-              <button class="box-button" type="submit">Забронировать</button>
-            </form>
-          </section>
+        <div class="main__description">
+            <div class="main__images">
+                <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+                <img class="main__image" src="../assets/cabin.jpg"/>
+                <img class="main__image" src="../assets/cabin.jpg"/>
+                <img class="main__image" src="../assets/cabin.jpg"/>
+            </div>
+            <div class="main__calendar">
+                <div class="box">
+                    <section class="box-width">
+                        <date-picker v-model="value2" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate2" inline></date-picker>
+                        <form @submit="sendDate2()">
+                            <button class="box-button" type="submit">Забронировать</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
         </div>
         <div class="user">
-          <div class="user__title">
-            <p class="user__title--first">Выбранные даты:</p>
-            <p class="user__title--second">Статус:</p>
-          </div>
-          <ul class="user__list">
-            <li class="user__item" v-for="item in acceptedList(userList2)" v-bind:key="item.id">
-                <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                <div class="user__switch">
-                 <div class="user__hover">
-                  <p>&times;</p>
-                 </div>
-                 <p class="user__status">{{ item.intervalStatus }}</p>
-                 <p class="user__decline">Отменить</p>
-              </div>
-            </li>
-          </ul>
+            <div class="user__title first">
+                <p class="user__title--first">Выбранные даты :</p>
+                <p class="user__title--second">Статус:</p>
+            </div>
+            <p class="user__title third">
+                Отказы :
+            </p>
+            <ul class="user__list second">
+                <li class="user__item" v-for="item in acceptedList(userList2)" v-bind:key="item.id">
+                    <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                    <div class="user__switch">
+                        <div class="user__hover">
+                            <p>&times;</p>
+                        </div>
+                        <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
+                        <p class="user__status">{{ item.intervalStatus }}</p>
+                    </div>
+                </li>
+            </ul>
+            <ul class="user__list fourth">
+                <li class="user__item" v-for="item in declineList(userList2)" v-bind:key="item.id">
+                    <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                    <p class="user__status">{{ item.intervalStatus }}</p>
+                </li>
+            </ul>
         </div>
-     </div>
     </div>
   </section>
 </template>
@@ -95,6 +106,10 @@
   import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
   import axios from 'axios'
+  
+  //const http = "http://rent-abrom.ru:8000";
+  const http = "https://abrom-booking.herokuapp.com";
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -113,7 +128,7 @@
       };
     },
       mounted() {
-      axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/1', method: 'GET'})
+      axios({url: http + '/api/v1/date-intervals/1', method: 'GET'})
               .then(response => {
                 this.list1 = response.data;
              })
@@ -122,7 +137,7 @@
                   this.$router.push("/")
                 }
              })
-      axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/2', method: 'GET'})
+      axios({url: http + '/api/v1/date-intervals/2', method: 'GET'})
               .then(response => {
                 this.list2 = response.data;
               })
@@ -131,7 +146,7 @@
                   this.$router.push("/")
                 }
               })
-      axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/my-dates', method: 'GET'})
+      axios({url: http + '/api/v1/date-intervals/my-dates', method: 'GET'})
               .then(response => {
                 this.userList = response.data;
                 for (let i = 0; i < this.userList.length; i++) {
@@ -217,15 +232,12 @@
                 .catch(err => console.log(err))
       },
       declineDate: function(id) {
-        axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/' + id , method: 'POST'})
+        axios({url: http + '/api/v1/date-intervals/' + id , method: 'POST'})
                 .then(resp => {
                     location.reload();
                 })
                 .catch( err => alert(err))
         },
-      reverseList: function(list) {
-        return list.slice().reverse();
-      },
       acceptedList: function(list) {
         return list.slice().filter(item => (item.intervalStatus !== 'Отклонено')).reverse();
       },

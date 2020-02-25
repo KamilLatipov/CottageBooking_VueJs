@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+//const http = "http://rent-abrom.ru:8000";
+const http = "https://abrom-booking.herokuapp.com";
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -34,7 +37,7 @@ export default new Vuex.Store({
       authorization({commit}, user){
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios({url: 'https://abrom-booking.herokuapp.com/api/v1/login', data: user, method: 'POST' })
+        axios({url: http + '/api/v1/login', data: user, method: 'POST' })
             .then(resp => {
               const token = resp.data.token
               const user = resp.data.user
@@ -55,18 +58,11 @@ export default new Vuex.Store({
     register({commit}, user){
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios({url: 'https://abrom-booking.herokuapp.com/api/v1/users/add', data: user, method: 'POST' })
+        axios({url: http + '/api/v1/users/add', data: user, method: 'POST' })
             .then(resp => {
-              //const token = resp.data.token
-              //const user = resp.data.user
-              //localStorage.setItem('token', token)
-              //axios.defaults.headers.common['Authorization'] = token
-              //commit('auth_success', token, user)
               resolve(resp)
             })
             .catch(err => {
-              //commit('auth_error', err)
-              //localStorage.removeItem('token')
                 if (err.statusCode === '409') {
                     alert('Пользователь с таким логином или почтой уже есть')
                 }
@@ -76,7 +72,7 @@ export default new Vuex.Store({
     logout({commit}) {
        return new Promise((resolve) => {
            commit('logout')
-           axios({url: 'https://abrom-booking.herokuapp.com/api/v1/logout', method: 'POST'})
+           axios({url: http + '/api/v1/logout', method: 'POST'})
            localStorage.removeItem('token')
            localStorage.removeItem('admin')
            delete axios.defaults.headers.common['Authorization']
@@ -85,7 +81,7 @@ export default new Vuex.Store({
     },
     sendDates({commit} , dates) {
         return new Promise((resolve, reject) => {
-            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/add', data: dates, method: 'POST'})
+            axios({url: http + '/api/v1/date-intervals/add', data: dates, method: 'POST'})
                 .catch(err => {
                     if (err.statusCode === '400') {
                         alert('выберите корректный промежуток')
@@ -101,7 +97,6 @@ export default new Vuex.Store({
   modules: {
   },
   getters : {
-    isAdmin: state => state.role,
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
   }
