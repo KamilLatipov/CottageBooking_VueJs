@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-//const http = "http://rent-abrom.ru:8000";
-const http = "https://abrom-booking.herokuapp.com";
+const http = "http://rent-abrom.ru:8000";
 
 Vue.use(Vuex)
 

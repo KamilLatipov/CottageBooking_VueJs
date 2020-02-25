@@ -14,7 +14,10 @@
           <img class="main__image" src="../assets/cabin.jpg"/>
         </div>
         <div class="main__calendar">
-         <div class="box">
+            <div class="main__details">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+            </div>
+            <div class="box">
            <section class="box-width">
              <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
                <form @submit="sendDate()">
@@ -61,6 +64,9 @@
                 <img class="main__image" src="../assets/cabin.jpg"/>
             </div>
             <div class="main__calendar">
+                <div class="main__details">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                </div>
                 <div class="box">
                     <section class="box-width">
                         <date-picker v-model="value2" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate2" inline></date-picker>
@@ -107,8 +113,7 @@
   import 'vue2-datepicker/index.css';
   import axios from 'axios'
   
-  //const http = "http://rent-abrom.ru:8000";
-  const http = "https://abrom-booking.herokuapp.com";
+  const http = "http://rent-abrom.ru:8000";
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
