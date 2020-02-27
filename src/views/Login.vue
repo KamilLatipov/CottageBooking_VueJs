@@ -16,7 +16,7 @@
                         <label class="user-form__label">Пароль</label>
                         <input class="user-form__input" required v-model="password" type="password"/>
                 </li>
-                <li class="user-form__error">{{error}}</li>
+                <li class="user-form__item error">{{error}}</li>
                 <li class="user-form__sign-in user-form__item">
                     <button class="user-form__button" type="submit">Войти</button>
                     <div class="user-form__link">

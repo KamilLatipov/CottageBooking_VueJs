@@ -76,15 +76,12 @@
 }
 
 .user__name {
-  width: 80%;
-
-  margin: 0;
+  width: 100px;
 }
 
 .user__switch {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
 
   position: relative;
@@ -137,7 +134,9 @@
 }
 
 .user__status {
-  margin-right: 25px;
+  width: 150px;
+
+  margin: 0;
 }
 
 .user__decline {

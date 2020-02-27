@@ -92,6 +92,9 @@
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
     import axios from 'axios'
+
+    const http = "http://rent-abrom.ru:8000";
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -117,7 +120,7 @@
             };
         },
         mounted() {
-            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/admin/requests', method: 'GET'})
+            axios({url: http + '/api/v1/admin/requests', method: 'GET'})
                 .then(response => {
                     this.requestList = response.data;
                     for (let c = 0; c < this.requestList.length; c++) {
@@ -129,7 +132,7 @@
                         }
                     }
                 });
-            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/1', method: 'GET'})
+            axios({url: http + '/api/v1/date-intervals/1', method: 'GET'})
                 .then(response => {
                     this.list1 = response.data;
                 })
@@ -138,7 +141,7 @@
                         this.$router.push("/")
                     }
                 })
-            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/date-intervals/2', method: 'GET'})
+            axios({url: http + '/api/v1/date-intervals/2', method: 'GET'})
                 .then(response => {
                     this.list2 = response.data;
                 })
@@ -147,7 +150,7 @@
                         this.$router.push("/")
                     }
                 })
-            axios({url: 'https://abrom-booking.herokuapp.com/api/v1/admin/booked', method: 'GET'})
+            axios({url: http + '/api/v1/admin/booked', method: 'GET'})
                 .then(response => {
                     this.bookedList = response.data;
                     for (let c = 0; c < this.bookedList.length; c++) {
@@ -196,7 +199,7 @@
                 return intervals;
             },
             acceptDate: function(id) {
-                axios({url: 'https://abrom-booking.herokuapp.com/api/v1/admin/requests/' + id + '/accept', method: 'POST'})
+                axios({url: http + '/api/v1/admin/requests/' + id + '/accept', method: 'POST'})
                   .then(resp => {
                       location.reload();
                   })
@@ -204,7 +207,7 @@
 
             },
             declineDate: function(id) {
-                axios({url: 'https://abrom-booking.herokuapp.com/api/v1/admin/requests/' + id + '/reject', method: 'POST'})
+                axios({url: http + '/api/v1/admin/requests/' + id + '/reject', method: 'POST'})
                     .then(resp => {
                         location.reload();
                     })
