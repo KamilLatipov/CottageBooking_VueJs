@@ -1,5 +1,7 @@
 .main-footer {
-  width: 1300px;
+  width: 100%;
+
+  min-width: 1300px;
 
   color: rgba(0,0,0, 0.5);
 
@@ -29,6 +31,6 @@
 
 @media (max-width: 400px) {
   .main-footer {
-    width: 100%;
+    min-width: 0;
   }
 }

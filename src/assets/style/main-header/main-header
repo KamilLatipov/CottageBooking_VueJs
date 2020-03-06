@@ -40,8 +40,16 @@
 
     margin: 0 auto;
 
+    &__logout {
+      margin: 0;
+    }
+
     &__user {
       padding-left: 50%;
+    }
+
+    &__welcome {
+      display: none;
     }
   }
 }
