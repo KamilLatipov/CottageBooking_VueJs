@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <header class="main-header">
            <nav class="main-nav">
             <div class="main-nav__link main-nav__image">

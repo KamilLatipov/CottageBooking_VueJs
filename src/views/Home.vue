@@ -40,6 +40,7 @@
         <button class="buttons__main" type="button" @click="show(1)">Выбрать даты</button>
         <div class="main__calendar" id="1">
           <span class="main__close" @click="close(1)">&times;</span>
+          <p class="main__calendar--title">Бронируйте дом, ожидайте подтверждения.</p>
           <div class="box">
               <section class="box-width">
                   <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
@@ -75,7 +76,7 @@
 <script>
   import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
-  import axios from 'axios'
+  import axios from 'axios';
   
   const http = "http://rent-abrom.ru:8000";
 

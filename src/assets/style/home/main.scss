@@ -20,7 +20,7 @@
 
   width: 100%;
 
-  margin: 0 0 40px 0;
+  margin: 0;
 
   border: 1px solid rgba(0,0,0, 0.2);
   border-radius: 20px;
@@ -69,12 +69,15 @@
   justify-content: space-around;
 
   width: 550px;
-  height: 400px;
 
   margin-top: 30px;
 
   background-color: whitesmoke;
   border: 1px solid rgba(0,0,0, 0.3);
+
+  &--title {
+    margin-top: 25px;
+  }
 }
 
 .main__close {
