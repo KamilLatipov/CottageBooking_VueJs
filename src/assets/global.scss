@@ -7,14 +7,19 @@
 @import "style/buttons/buttons";
 @import "style/admin-page/admin";
 @import "style/user/user";
+@import "style/details/details";
 
 @import "var.scss";
 
-.mx-datepicker-inline {
-  width: 410px;
+ul {
+  padding: 0;
+}
+
+.mx-datepicker-main {
+    width: 460px;
 
   @media (max-width: $mobile) {
-    width: 380px;
+    width: 350px;
   }
 }
 

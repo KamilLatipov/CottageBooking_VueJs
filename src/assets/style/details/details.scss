@@ -1,0 +1,74 @@
+@import "../../var.scss";
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin: 20px 0 ;
+  padding: 0 10px;
+
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.details__title {
+  margin: 5px 0;
+}
+
+.details__rooms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  margin: 2px 0;
+  padding: 0 0 30px 0;
+
+  border-bottom: 1px solid rgba(0,0,0, 0.2);
+
+  list-style-type: circle;
+}
+
+.details__room {
+  margin: 0 12px;
+
+  &:first-child {
+    margin-left: 18px;
+  }
+}
+
+.details__description {
+  width: 70%;
+
+  padding: 20px 0 20px 0;
+}
+
+.details__wishes {
+  width: 540px;
+
+  padding: 25px 0 0 0;
+
+  border-top: 1px solid rgba(0,0,0, 0.2);
+}
+
+.details__list {
+  margin-left: 15px;
+
+  list-style-type: circle;
+}
+
+@media (max-width: $mobile) {
+  .details {
+    padding: 0 0 0 8px;
+  }
+
+  .details__rooms {
+
+  }
+
+  .details__list {
+    margin-left: 17px;
+  }
+}

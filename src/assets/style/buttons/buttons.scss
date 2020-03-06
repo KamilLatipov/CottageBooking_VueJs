@@ -46,6 +46,24 @@
   }
 }
 
+.buttons__main {
+  height: 50px;
+
+  padding: 15px 25px;
+  margin: 0;
+
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+
+  background-color: #8bc540;
+  border: none;
+  border-radius: 10px;
+
+  outline : none;
+  cursor: pointer;
+}
+
 @media (max-width: $mobile) {
   .buttons--booked {
     width: 20%;
@@ -61,5 +79,9 @@
     padding: 0 10px;
 
     font-size: 12px;
+  }
+
+  .buttons__main {
+    margin-top: 20px;
   }
 }

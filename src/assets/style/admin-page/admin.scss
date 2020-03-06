@@ -34,8 +34,14 @@
 }
 
 .admin__calendar{
-  width: 41%;
+  width: 50%;
   margin-top: 4%;
+}
+
+.box {
+  width: 100%;
+
+  margin-top: 30px;
 }
 
 .box-width {
@@ -45,8 +51,8 @@
 }
 
 .box-button {
-  padding: 10px 30px;
-  margin-top: 40px;
+  padding: 10px 20px;
+  margin-top: 30px;
 
   background-color: #8bc540;
   text-decoration: none;

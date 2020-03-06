@@ -16,63 +16,123 @@
 .main__item  {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 
   width: 100%;
 
-  margin-top: 60px;
-  margin-bottom: 40px;
-  padding: 0 40px 0;
-
+  margin: 0 0 40px 0;
 
   border: 1px solid rgba(0,0,0, 0.2);
   border-radius: 20px;
 }
 
+.main__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 80%;
+
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
 .main__description {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 55%;
+
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.main__tools {
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 
-  width: 100%;
-
-  margin-top: 10px;
-}
-
-.main__details {
-  width: 100%;
-
-  margin: 20px 0;
-  padding: 0 10px;
-
-  border: 1px solid black;
+  width: 44%;
 }
 
 .main__calendar {
-  width: 41%;
+  position: fixed;
+
+  right: 32%;
+  bottom: 150px;
+
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  width: 550px;
+  height: 400px;
+
+  margin-top: 30px;
+
+  background-color: whitesmoke;
+  border: 1px solid rgba(0,0,0, 0.3);
+}
+
+.main__close {
+  position: absolute;
+
+  right: 15px;
+  top: 10px;
+
+  width: 25px;
+  height: 40px;
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 40px;
+  vertical-align: center;
+  color: rgba(108, 122, 137, 1);
+  cursor: pointer;
 }
 
 .main__images {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
-  margin: 20px 0;
+  margin: 30px 0 5px 0;
 
-  width: 500px;
+  width: 100%;
+  height: 230px;
 }
 
 .main__image {
-  width: 33.32%;
+  width: 23%;
+  height: 190px;
 
-  &--1 {
-    width: 100%;
-  }
+  margin: 0 5px;
 
   &:hover {
     opacity: 0.85;
   }
 }
 
+.show {
+  animation-name: show;
+  animation-duration: 1s;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 @media (max-width: $mobile) {
   .main__list {
@@ -83,36 +143,36 @@
     padding: 0;
   }
 
+  .main__wrapper {
+    width: 95%;
+  }
+
   .main__description {
     width: 100%;
   }
 
+  .main__images {
+    height: auto;
+  }
+
   .main__image {
-    width: 126.66px;
+    width: 100%;
+    height: 150px;
 
-    &--1 {
-      width: 380px;
-    }
+    margin: 0;
   }
 
-  .main__user--list {
-    width: 360px;
+  .main__tools {
+    width: 100%;
   }
 
-  .main__user--item {
-    width: 330px;
+  .main__calendar {
+    right: 25px;
 
-    padding: 10px 7px;
+    width: 90%;
   }
 
-  .a {
-    margin: 5px 0 0 40px;
-    width: 120px;
-  }
-
-  .b {
-    width: 100px;
-    margin: 5px 0 0 50px;
-
+  .main__close {
+    top: -5px;
   }
 }

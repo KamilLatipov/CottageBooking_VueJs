@@ -2,19 +2,26 @@
 
 .user {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: space-around;
+
 
   width: 100%;
+  height: 300px;
 
-  margin-top: 20px;
+  &--admin {
+    width: 100%;
+  }
+
+  margin: 5px 0 0 0;
 }
 
 .user__title {
   display: flex;
   justify-content: space-around;
 
-  width: 45%;
+  width: 40%;
+  height: 40px;
 }
 
 .user__list{
@@ -44,6 +51,8 @@
 
     &-thumb {
       background-color: rgba(108, 122, 137, 1);
+
+      border-radius: 30% 30%;
     }
   }
 }
@@ -96,7 +105,7 @@
     content: '';
     width: 0; height: 100%;
     background-color: #8bc540;
-    top: 0;  left: auto; right: 0;
+    top: 0;  left: 0; right: 0;
     z-index: -1;
     transition: all 300ms ease;
   }
@@ -134,7 +143,7 @@
 }
 
 .user__status {
-  width: 150px;
+  width: 140px;
 
   margin: 0;
 }
@@ -152,7 +161,7 @@
 }
 
 .user__hover {
-  width: 20px;
+  width: 23px;
   height: 100%;
 
   padding: 0;
@@ -169,7 +178,7 @@
   }
 
   .user__title {
-    width: 100%;
+    width: 50%;
   }
 
   .user__hover {

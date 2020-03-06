@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="user user--admin">
-                <h3 class="user__title first">Запросы:</h3>
-                <h3 class="user__title third">Одобрено:</h3>
+                <p class="user__title first">Запросы:</p>
+                <p class="user__title third">Одобрено:</p>
                 <ul class="user__list second">
                     <li class="user__item" v-for="item in reverseList(requestList1)" v-bind:key="item.id">
                         <p class="user__dates user__dates--admin">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
@@ -33,46 +33,6 @@
                 </ul>
                 <ul class="user__list fourth">
                     <li class="user__item" v-for="item in reverseList(bookedList1)" v-bind:key="item.id">
-                        <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                        <div class="user__switch">
-                            <div class="user__hover">
-                                <p>&times;</p>
-                            </div>
-                            <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
-                            <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="admin__item">
-            <div class="admin__description">
-                <div class="admin__images">
-                    <img class="admin__image admin__image--1" src="../assets/cabin.jpg"/>
-                </div>
-                <div class="admin__calendar">
-                    <div class="box">
-                        <section class="box-width">
-                            <date-picker v-model="value2" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate2" inline></date-picker>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <div class="user user--admin">
-                <h3 class="user__title user__title--first">Запросы:</h3>
-                <h3 class="user__title user__title--second">Одобрено:</h3>
-                <ul class="user__list">
-                    <li class="user__item" v-for="item in reverseList(requestList2)" v-bind:key="item.id">
-                        <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                        <p class="user__name">{{item.owner.firstname}} {{item.owner.lastname}}</p>
-                        <div class="buttons">
-                            <button class="buttons__admin" @click="acceptDate(item.id)">Да</button>
-                            <button class="buttons__admin" @click="declineDate(item.id)">Нет</button>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="user__list">
-                    <li class="user__item" v-for="item in reverseList(bookedList2)" v-bind:key="item.id">
                         <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                         <div class="user__switch">
                             <div class="user__hover">
@@ -104,9 +64,6 @@
             return {
                 value1: new Date(),
                 value2: new Date(),
-                value3: new Date(),
-                dates1: null,
-                status: null,
                 showTimePanel: true,
                 showTimeRangePanel: true,
                 requestList: [],

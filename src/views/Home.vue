@@ -6,105 +6,69 @@
       </p>
     </router-link>
     <div class="main__item">
-      <div class="main__description">
+      <div class="main__wrapper">
         <div class="main__images">
-          <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
-          <img class="main__image" src="../assets/cabin.jpg"/>
-          <img class="main__image" src="../assets/cabin.jpg"/>
-          <img class="main__image" src="../assets/cabin.jpg"/>
+            <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
+            <img class="main__image" src="../assets/cabin.jpg"/>
+            <img class="main__image" src="../assets/cabin.jpg"/>
+            <img class="main__image" src="../assets/cabin.jpg"/>
         </div>
-        <div class="main__calendar">
-            <div class="main__details">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-            </div>
-            <div class="box">
-           <section class="box-width">
-             <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
-               <form @submit="sendDate()">
-                   <button class="box-button" type="submit">Забронировать</button>
-               </form>
-           </section>
-         </div>
+      <div class="main__description">
+        <div class="details">
+          <h4 class="details__title">Общая площадь xxx кв. м</h4>
+          <ul class="details__rooms">
+              <li class="details__room">Хол (1)</li>
+              <li class="details__room">Спальные комнаты (3)</li>
+              <li class="details__room">Уборная (2)</li>
+              <li class="details__room">Кухонная зона (1)</li>
+          </ul>
+          <p class="details__description">
+              Домик стоит в глухой татарской деревне, расположенной высоко в горах.
+              Неподалеку озерце с омолаживающей водичкой и прекрасным видом.
+              Остальное не передать словами, приезжайте…
+          </p>
+          <div class="details__wishes">
+              <h4 class="details__title">Пожелания :</h4>
+              <ul class="details__list">
+                  <li>Машины загоняем на территорию.</li>
+                  <li>После себя оставляем порядок</li>
+              </ul>
+          </div>
         </div>
       </div>
-        <div class="user">
-          <div class="user__title first">
-            <p class="user__title--first">Выбранные даты :</p>
-            <p class="user__title--second">Статус:</p>
+      <div class="main__tools">
+        <button class="buttons__main" type="button" @click="show(1)">Выбрать даты</button>
+        <div class="main__calendar" id="1">
+          <span class="main__close" @click="close(1)">&times;</span>
+          <div class="box">
+              <section class="box-width">
+                  <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
+                  <form @submit="sendDate()">
+                      <button class="box-button" type="submit">Забронировать</button>
+                  </form>
+              </section>
           </div>
-          <p class="user__title third">
-            Отказы :
-          </p>
+         </div>
+         <div class="user">
+            <p class="user__title">Выбранные даты :</p>
+            <p class="user__title">Статус:</p>
           <ul class="user__list second">
-            <li class="user__item" v-for="item in acceptedList(userList1)" v-bind:key="item.id">
+            <li class="user__item" v-for="item in userList1" v-bind:key="item.id">
                 <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                <div class="user__switch">
-                  <div class="user__hover">
-                    <p>&times;</p>
-                  </div>
-                    <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
-                  <p class="user__status">{{ item.intervalStatus }}</p>
-                </div>
-            </li>
-          </ul>
-          <ul class="user__list fourth">
-            <li class="user__item" v-for="item in declineList(userList1)" v-bind:key="item.id">
-              <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-              <p class="user__status">{{ item.intervalStatus }}</p>
-            </li>
-          </ul>
-        </div>
-    </div>
-    <div class="main__item">
-        <div class="main__description">
-            <div class="main__images">
-                <img class="main__image main__image--1" src="../assets/cabin.jpg"/>
-                <img class="main__image" src="../assets/cabin.jpg"/>
-                <img class="main__image" src="../assets/cabin.jpg"/>
-                <img class="main__image" src="../assets/cabin.jpg"/>
-            </div>
-            <div class="main__calendar">
-                <div class="main__details">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-                </div>
-                <div class="box">
-                    <section class="box-width">
-                        <date-picker v-model="value2" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate2" inline></date-picker>
-                        <form @submit="sendDate2()">
-                            <button class="box-button" type="submit">Забронировать</button>
-                        </form>
-                    </section>
-                </div>
-            </div>
-        </div>
-        <div class="user">
-            <div class="user__title first">
-                <p class="user__title--first">Выбранные даты :</p>
-                <p class="user__title--second">Статус:</p>
-            </div>
-            <p class="user__title third">
-                Отказы :
-            </p>
-            <ul class="user__list second">
-                <li class="user__item" v-for="item in acceptedList(userList2)" v-bind:key="item.id">
-                    <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                    <div class="user__switch">
-                        <div class="user__hover">
-                            <p>&times;</p>
-                        </div>
-                        <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
-                        <p class="user__status">{{ item.intervalStatus }}</p>
+                <div class="user__switch" v-if="item.intervalStatus === 'Одобрено'">
+                    <div class="user__hover">
+                        <p>&times;</p>
                     </div>
-                </li>
-            </ul>
-            <ul class="user__list fourth">
-                <li class="user__item" v-for="item in declineList(userList2)" v-bind:key="item.id">
-                    <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
+                    <p class="user__decline" @click="declineDate(item.id)">Отменить</p>
                     <p class="user__status">{{ item.intervalStatus }}</p>
-                </li>
-            </ul>
+                </div>
+                <p class="user__status" v-else>{{ item.intervalStatus }}</p>
+            </li>
+          </ul>
         </div>
-    </div>
+       </div>
+      </div>
+      </div>
   </section>
 </template>
 
@@ -228,14 +192,6 @@
         this.$store.dispatch('sendDates', dates)
                .catch(err => console.log(err))
       },
-      sendDate2: function() {
-        let dates = {};
-        dates.startOfInterval = this.value2[0];
-        dates.endOfInterval = this.value2[1];
-        dates.cottageID = 2;
-        this.$store.dispatch('sendDates', dates)
-                .catch(err => console.log(err))
-      },
       declineDate: function(id) {
         axios({url: http + '/api/v1/date-intervals/' + id , method: 'POST'})
                 .then(resp => {
@@ -243,12 +199,15 @@
                 })
                 .catch( err => alert(err))
         },
-      acceptedList: function(list) {
-        return list.slice().filter(item => (item.intervalStatus !== 'Отклонено')).reverse();
-      },
-      declineList: function(list) {
-        return list.slice().filter(item => (item.intervalStatus === 'Отклонено')).reverse();
-      }
+        show: function(id) {
+            let block = document.getElementById(id);
+            block.style.display = "flex";
+            block.classList.add("show");
+        },
+        close: function(id) {
+            let block = document.getElementById(id);
+            block.style.display = "none";
+        }
     },
     components: {
       DatePicker ,
