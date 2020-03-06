@@ -5,10 +5,9 @@
             <div class="main-nav__link main-nav__image">
                 <img width="67" height="67" src="../assets/house.png"/>
             </div>
-             <div class="main-nav__user">
-              <div v-if="isLoggedIn">
+             <div v-if="isLoggedIn" class="main-nav__user">
+                  <p>Приветствуем на сайте rent-abrom.ru! </p>
                   <a class="main-nav__logout" @click="logout">Выйти</a>
-              </div>
              </div>
            </nav>
         </header>
@@ -23,7 +22,6 @@
             return {};
         },
         computed: {
-            //isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
             ...mapGetters({
                 isLoggedIn: "isLoggedIn",
             }),

@@ -3,7 +3,7 @@
 .main-header {
   width: 100%;
 
-  min-width: 1200px;
+  min-width: 1300px;
 
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.09);
 }
@@ -20,6 +20,7 @@
     color: black;
 
     padding-left: 20px;
+    margin-left: 300px;
   }
 
   &__user {
