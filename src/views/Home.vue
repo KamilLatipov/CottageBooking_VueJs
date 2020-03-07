@@ -54,9 +54,9 @@
             <p class="user__title">Выбранные даты :</p>
             <p class="user__title">Статус:</p>
           <ul class="user__list second">
-            <li class="user__item" v-for="item in userList1" v-bind:key="item.id">
+            <li class="user__item" v-for="item in reverseList(userList1)" v-bind:key="item.id">
                 <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
-                <div class="user__switch" v-if="item.intervalStatus === 'Одобрено'">
+                <div class="user__switch" v-if="item.intervalStatus === 'Одобрено' || item.intervalStatus === 'В ожидании согласнования'">
                     <div class="user__hover">
                         <p>&times;</p>
                     </div>
@@ -208,6 +208,9 @@
         close: function(id) {
             let block = document.getElementById(id);
             block.style.display = "none";
+        },
+        reverseList: function(list) {
+          return list.slice().reverse();
         }
     },
     components: {
