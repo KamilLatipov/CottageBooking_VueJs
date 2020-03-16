@@ -40,10 +40,10 @@ const routes = [
     path:'/Admin',
     name:'admin',
     component: Admin,
-    beforeEnter: ((to, from, next) => {
-      if (localStorage.getItem('admin') === 'ROLE_ADMIN') next()
-      else next('/home')
-    })
+    //beforeEnter: ((to, from, next) => {
+     // if (localStorage.getItem('admin') === 'ROLE_ADMIN') next()
+     // else next('/home')
+    //})
   },
   {
     path:'/home',

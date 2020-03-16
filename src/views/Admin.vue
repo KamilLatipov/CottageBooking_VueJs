@@ -1,10 +1,54 @@
 <template>
-    <section class="admin__list">
+    <main>
+        <div class="add-house">
+            <div class="add-house__wrapper">
+               <h3 class="add-house__title">Добавить новый дом</h3>
+                <form class="add-house__form">
+                    <fieldset class="add-house__rooms">
+                        <legend>Количество комнат</legend>
+                        <label class="add-house__label">
+                            Общая площадь
+                            <input class="add-house__room" type="number">
+                            кв. м.
+                        </label>
+                        <label class="add-house__label">
+                            <span>Хол</span>
+                            <input class="add-house__room" type="number">
+                        </label>
+                        <label class="add-house__label">
+                            <span>Спальные комнаты</span>
+                            <input class="add-house__room" type="number">
+                        </label>
+                        <label class="add-house__label">
+                            <span>Уборная комната</span>
+                            <input class="add-house__room" type="number">
+                        </label>
+                        <label class="add-house__label">
+                            <span>Кухонная зона</span>
+                            <input class="add-house__room" type="number">
+                        </label>
+                    </fieldset>
+                    <fieldset class="add-house__description">
+                        <legend>Описание</legend>
+                        <textarea class="add-house__text"></textarea>
+                    </fieldset>
+                    <fieldset class="add-house__wishes">
+                        <legend>Пожелания</legend>
+                        <textarea class="add-house__text"></textarea>
+                    </fieldset>
+                    <span class="add-house__submit">
+                        <input class="add-house__file" type="file" multiple>
+                        <button class="add-house__button" type="submit">Добавить</button>
+                    </span>
+                </form>
+            </div>
+        </div>
         <router-link class="main__admin" to="/home">
-            <p >
+            <p>
                 Главная
             </p>
         </router-link>
+    <section class="admin__list">
         <div class="admin__item">
             <div class="admin__description">
                 <div class="admin__images">
@@ -13,7 +57,7 @@
                 <div class="admin__calendar">
                     <div class="box">
                         <section class="box-width">
-                            <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
+                            <date-picker v-model="values[items.id]" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
                         </section>
                     </div>
                 </div>
@@ -46,6 +90,7 @@
             </div>
         </div>
     </section>
+    </main>
 </template>
 
 <script>
@@ -62,8 +107,7 @@
         name: "header",
         data() {
             return {
-                value1: new Date(),
-                value2: new Date(),
+                values: [],
                 showTimePanel: true,
                 showTimeRangePanel: true,
                 requestList: [],

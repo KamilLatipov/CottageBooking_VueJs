@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-const http = "http://rent-abrom.ru:8000";
+const http = "https://abrom-booking.herokuapp.com";
 
 Vue.use(Vuex)
 
@@ -11,17 +11,19 @@ export default new Vuex.Store({
     status: '',
     token: localStorage.getItem('token') || '',
     user : {},
-    role: localStorage.getItem('admin') || ''
+    role: localStorage.getItem('admin') || '',
+    login: localStorage.getItem('login') || '',
   },
   mutations: {
     auth_request(state){
       state.status = 'loading'
     },
-    auth_success(state, token, user , role){
+    auth_success(state, token, user , role , login) {
       state.status = "status"
       state.token = token
       state.user = user
       state.role = role
+      state.login = login
     },
     auth_error(state){
       state.status = 'error'
@@ -36,15 +38,17 @@ export default new Vuex.Store({
       authorization({commit}, user){
       return new Promise((resolve, reject) => {
         commit('auth_request')
+          const login = user.login;
+          localStorage.setItem('login', login);
         axios({url: http + '/api/v1/login', data: user, method: 'POST' })
             .then(resp => {
-              const token = resp.data.token
-              const user = resp.data.user
-              const role = resp.data.role
-              localStorage.setItem('admin', role)
-              localStorage.setItem('token', token)
-              axios.defaults.headers.common['Authorization'] = token
-              commit('auth_success', token, user , role)
+              const token = resp.data.token;
+              const user = resp.data.user;
+              const role = resp.data.role;
+              localStorage.setItem('admin', role);
+              localStorage.setItem('token', token);
+              axios.defaults.headers.common['Authorization'] = token;
+              commit('auth_success', token, user , role);
               resolve(resp)
             })
             .catch(err => {
@@ -90,6 +94,11 @@ export default new Vuex.Store({
                     }
                 })
 
+        })
+    },
+    addCottage(cottage) {
+          return new Promise( (resolve, reject) => {
+              axios({url: http + '/api/v1/cottages/add', data: cottage, method: 'POST'})
         })
     }
   },
