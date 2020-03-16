@@ -64,6 +64,10 @@
   cursor: pointer;
 }
 
+.buttons__calendar {
+  opacity: 0.8;
+}
+
 @media (max-width: $mobile) {
   .buttons--booked {
     width: 20%;

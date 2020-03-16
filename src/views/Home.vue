@@ -1,10 +1,9 @@
 <template>
-  <section class="main__list">
-    <router-link class="main__admin" to="/admin" v-show="isAdmin" >
-      <p >
-        Запросы
-      </p>
-    </router-link>
+  <main>
+      <router-link class="main__admin" to="/admin">
+          <p>Запросы</p>
+      </router-link>
+  <section class="main__list" v-for="items in list" v-bind:key="items.id">
     <div class="main__item">
       <div class="main__wrapper">
         <div class="main__images">
@@ -15,17 +14,15 @@
         </div>
       <div class="main__description">
         <div class="details">
-          <h4 class="details__title">Общая площадь xxx кв. м</h4>
+          <h4 class="details__title">Общая площадь {{ items.rooms.square }} кв. м</h4>
           <ul class="details__rooms">
-              <li class="details__room">Хол (1)</li>
-              <li class="details__room">Спальные комнаты (3)</li>
-              <li class="details__room">Уборная (2)</li>
-              <li class="details__room">Кухонная зона (1)</li>
+              <li class="details__room">Хол ( {{ items.rooms.hall }} )</li>
+              <li class="details__room">Спальные комнаты ( {{ items.rooms.bedroom }} )</li>
+              <li class="details__room">Уборная ( {{ items.rooms.bathroom }} )</li>
+              <li class="details__room">Кухонная зона ( {{ items.rooms.kitchen }} )</li>
           </ul>
           <p class="details__description">
-              Домик стоит в глухой татарской деревне, расположенной высоко в горах.
-              Неподалеку озерце с омолаживающей водичкой и прекрасным видом.
-              Остальное не передать словами, приезжайте…
+              {{ items.description }}
           </p>
           <div class="details__wishes">
               <h4 class="details__title">Пожелания :</h4>
@@ -37,15 +34,15 @@
         </div>
       </div>
       <div class="main__tools">
-        <button class="buttons__main" type="button" @click="show(1)">Выбрать даты</button>
-        <div class="main__calendar" id="1">
-          <span class="main__close" @click="close(1)">&times;</span>
+        <button class="buttons__main" type="button" @click="show(items.id)">Выбрать даты</button>
+        <div class="main__calendar" :id=items.id>
+          <span class="main__close" @click="close(items.id)">&times;</span>
           <p class="main__calendar--title">Бронируйте дом, ожидайте подтверждения.</p>
           <div class="box">
               <section class="box-width">
-                  <date-picker v-model="value1" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="disabledDate" inline></date-picker>
-                  <form @submit="sendDate()">
-                      <button class="box-button" type="submit">Забронировать</button>
+                  <date-picker v-model="values[items.id - 1]" type="text" value-type="format" range placeholder="Выберите даты"  :disabled-date="((date) => disabledDate(date, items.id)) " inline>1</date-picker>
+                  <form @submit="sendDate(items.id)">
+                      <button class="box-button buttons__calendar" type="submit">Забронировать</button>
                   </form>
               </section>
           </div>
@@ -54,7 +51,7 @@
             <p class="user__title">Выбранные даты :</p>
             <p class="user__title">Статус:</p>
           <ul class="user__list second">
-            <li class="user__item" v-for="item in reverseList(userList1)" v-bind:key="item.id">
+            <li class="user__item" v-for="item in reverseList(userList[items.id - 1])" v-bind:key="item.id">
                 <p class="user__dates">C {{  item.startOfInterval }} по {{ item.endOfInterval}}</p>
                 <div class="user__switch" v-if="item.intervalStatus === 'Одобрено' || item.intervalStatus === 'В ожидании согласнования'">
                     <div class="user__hover">
@@ -71,6 +68,7 @@
       </div>
       </div>
   </section>
+  </main>
 </template>
 
 <script>
@@ -78,7 +76,7 @@
   import 'vue2-datepicker/index.css';
   import axios from 'axios';
   
-  const http = "http://rent-abrom.ru:8000";
+  const http = "https://abrom-booking.herokuapp.com";
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -87,109 +85,70 @@
     name: "header",
     data() {
       return {
-        value1: new Date(),
-        value2: new Date(),
+        values: [],
         showTimePanel: true,
-        list1: [],
-        list2: [],
+        list: [],
         userList: [],
-        userList1: [],
-        userList2: []
       };
     },
       mounted() {
-      axios({url: http + '/api/v1/date-intervals/1', method: 'GET'})
-              .then(response => {
-                this.list1 = response.data;
-             })
-              .catch(err => {
-                if (err.name === '403') {
-                  this.$router.push("/")
-                }
-             })
-      axios({url: http + '/api/v1/date-intervals/2', method: 'GET'})
-              .then(response => {
-                this.list2 = response.data;
-              })
-              .catch(err => {
-                if (err.name === '403') {
-                  this.$router.push("/")
-                }
-              })
-      axios({url: http + '/api/v1/date-intervals/my-dates', method: 'GET'})
-              .then(response => {
-                this.userList = response.data;
-                for (let i = 0; i < this.userList.length; i++) {
-                  if (this.userList[i].intervalStatus === 'PENDING') {
-                    this.userList[i].intervalStatus = 'В ожидании согласнования'
+      axios({url: http + '/api/v1/cottages/all', method: 'GET'})
+          .then(response => {
+              this.list = response.data;
+              for (let i = 0 ; i < this.list.length ; i++ ) {
+                  let listOfDates = [];
+
+                  this.values.push(new Date);
+
+                  for (let a = 0 ; a < this.list[i].dateIntervalDTOList.length ; a++ ) {
+                      if (this.list[i].dateIntervalDTOList[a].intervalStatus === 'PENDING') {
+                          this.list[i].dateIntervalDTOList[a].intervalStatus = 'В ожидании согласнования'
+                      }
+                      else if (this.list[i].dateIntervalDTOList[a].intervalStatus === 'BOOKED') {
+                          this.list[i].dateIntervalDTOList[a].intervalStatus = 'Одобрено'
+                      }
+                      else {
+                          this.list[i].dateIntervalDTOList[a].intervalStatus = 'Отклонено'
+                      }
+
+                      if (this.list[i].dateIntervalDTOList[a].owner.login === localStorage.getItem('login')) {
+                          listOfDates.push(this.list[i].dateIntervalDTOList[a]);
+                      }
+
                   }
-                  else if (this.userList[i].intervalStatus === 'BOOKED') {
-                    this.userList[i].intervalStatus = 'Одобрено'
-                  }
-                  else {
-                    this.userList[i].intervalStatus = 'Отклонено'
-                  }
-                }
-                for (let i = 0; i < this.userList.length; i++) {
-                  if (this.userList[i].cottageID === 1) {
-                    this.userList1.push(this.userList[i])
-                  }
-                  else {
-                    this.userList2.push(this.userList[i])
-                  }
-                }
-              })
-              .catch(err => {
-                if (err.name === '403') {
-                  this.$router.push("/")
-                }
-              })
+
+                  this.userList.push(listOfDates);
+                  listOfDates = [];
+              }
+          })
     },
     computed: {
       isAdmin: function () {
         return (localStorage.getItem('admin') === 'ROLE_ADMIN');
-      }
+      },
     },
     methods: {
-      disabledDate(date) {
+      disabledDate(date, id) {
         let intervals = date < today;
-        for (let i = 0; i < this.list1.length; i++) {
-           let string = this.list1[i].startOfInterval;
-           let string2 = this.list1[i].endOfInterval;
-           let splited = string.split("-");
-           let splited2 = string2.split("-");
-           let a2 = parseInt(splited2[0], 10);
-           let b2 = parseInt(splited2[1], 10) - 1;
-           let c2 = parseInt(splited2[2], 10);
-           let a = parseInt(splited[0], 10);
-           let b = parseInt(splited[1], 10) - 1;
-           let c = parseInt(splited[2], 10);
-           intervals = intervals || (!(date < new Date(a,b,c)) && !(date > new Date(a2, b2, c2)));
+        for (let i = 0; i < this.list[id - 1].dateIntervalDTOList.length; i++) {
+                let startOfInterval = this.list[id - 1].dateIntervalDTOList[i].startOfInterval.split("-");
+                let endOfInterval = this.list[id - 1].dateIntervalDTOList[i].endOfInterval.split("-");
+
+                let endOfIntervalYear = parseInt(endOfInterval[0], 10);
+                let endOfIntervalMonth = parseInt(endOfInterval[1], 10) - 1;
+                let endOfIntervalDay = parseInt(endOfInterval[2], 10);
+                let startOfIntervalYear = parseInt(startOfInterval[0], 10);
+                let startOfIntervalMonth = parseInt(startOfInterval[1], 10) - 1;
+                let startOfIntervalDay = parseInt(startOfInterval[2], 10);
+                intervals = intervals || (!(date < new Date(startOfIntervalYear, startOfIntervalMonth, startOfIntervalDay)) && !(date > new Date(endOfIntervalYear, endOfIntervalMonth, endOfIntervalDay)));
        }
         return intervals;
       },
-      disabledDate2(date) {
-        let intervals = date < today;
-        for (let i = 0; i < this.list2.length; i++) {
-          let string = this.list2[i].startOfInterval;
-          let string2 = this.list2[i].endOfInterval;
-          let splited = string.split("-");
-          let splited2 = string2.split("-");
-          let a2 = parseInt(splited2[0], 10);
-          let b2 = parseInt(splited2[1], 10) - 1;
-          let c2 = parseInt(splited2[2], 10);
-          let a = parseInt(splited[0], 10);
-          let b = parseInt(splited[1], 10) - 1;
-          let c = parseInt(splited[2], 10);
-          intervals = intervals || (!(date < new Date(a,b,c)) && !(date > new Date(a2, b2, c2)));
-        }
-        return intervals;
-      },
-      sendDate: function() {
+      sendDate: function(id) {
         let dates = {};
-        dates.startOfInterval = this.value1[0];
-        dates.endOfInterval = this.value1[1];
-        dates.cottageID = 1;
+        dates.startOfInterval = this.values[id - 1][0];
+        dates.endOfInterval = this.values[id - 1][1];
+        dates.cottageID = id;
         this.$store.dispatch('sendDates', dates)
                .catch(err => console.log(err))
       },
@@ -211,7 +170,7 @@
         },
         reverseList: function(list) {
           return list.slice().reverse();
-        }
+        },
     },
     components: {
       DatePicker ,

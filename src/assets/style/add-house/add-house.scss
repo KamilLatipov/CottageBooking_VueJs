@@ -1,0 +1,102 @@
+.add-house {
+  position: fixed;
+  left: 25%;
+
+  display: flex;
+  justify-content: space-around;
+
+  width: 700px;
+
+  border: 1px solid rgba(0,0,0, 0.5);
+  background-color: white;
+
+  z-index: 100;
+}
+
+.add-house__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  width: 90%;
+
+  margin-bottom: 40px;
+}
+
+.add-house__form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.add-house__rooms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 40%;
+
+  margin-bottom: 20px;
+
+  text-align: start;
+}
+
+.add-house__room {
+  width: 35px;
+  height: 15px;
+}
+
+.add-house__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 90%;
+
+  margin-bottom: 10px;
+}
+
+.add-house__description {
+  width: 40%;
+
+  margin-bottom: 20px;
+}
+
+.add-house__text {
+  width: 99%;
+  height: 75%;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+.add-house__wishes {
+  width: 40%;
+  height: 100px;
+
+  line-height: 20px;
+}
+
+.add-house__submit {
+  width: 45%;
+
+  margin-top: 20px;
+}
+
+.add-house__file {
+  margin-bottom: 20px;
+}
+
+.add-house__button {
+  width: 150px;
+  height: 50px;
+
+  color: white;
+  font-size: 17px;
+
+  border: 1px solid rgba(0,0,0, 0.5);
+  border-radius: 10px 10px;
+  background-color: #8bc540;
+  outline: none;
+}
